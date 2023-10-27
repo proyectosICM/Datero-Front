@@ -9,6 +9,9 @@ import { ParaderosC } from './CRUD/ParaderosCRUD/ParaderosC';
 import { DistritoC } from "./CRUD/DistritosCRUD/DistritosC";
 import { RolesC } from './CRUD/RolesCRUD/RolesC';
 import { UsuariosC } from "./CRUD/UsuariosCRUD/UsuariosC";
+import { ParaderosMapa } from "./CRUD/ParaderosCRUD/ParaderosMapa";
+import { ParaderoXRutaTabla } from "./CRUD/ParaderoxRuta/ParaderoXRutaTabla";
+import { RutasMapa } from "./CRUD/RutasCRUD/RutasMapa";
 
 export const routes = [
   { path: "/", component: <Inicio /> },
@@ -25,5 +28,9 @@ export const routes = [
   { path: "/usuariosxemp/:id", component: <UsuariosC />},
   { path: "/distritosCRUD", component: <DistritoC />},
   { path: "/paraderosCRUD", component: <ParaderosC />},
+  { path: '/paraderoxmap/:nombre/:longitud/:latitud', component: <ParaderosMapa /> },
+  { path: '/paraderoxruta/:ruta', component: <ParaderoXRutaTabla /> },
   { path: '/rolesCRUD', component: <RolesC /> },
+
+  { path: '/rutasMapa', component: <RutasMapa /> },
 ];

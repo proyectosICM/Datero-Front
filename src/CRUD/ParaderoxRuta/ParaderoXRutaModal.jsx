@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useCallback, useEffect, useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { BsX } from "react-icons/bs";
-
+import { paraderosEstado } from "../../API/apiurls";
+import { useListarElementos } from "../../Hooks/CRUDHooks";
+ 
 export function ParaderoXRutaModal({ show, close, datosaeditar, editar, agregar, emp }) {
 
     const [formData, setFormData] = useState({
@@ -12,18 +14,21 @@ export function ParaderoXRutaModal({ show, close, datosaeditar, editar, agregar,
     const [editando, setEditando] = useState(false);
 
     const d = 1
+
+    useListarElementos(`${paraderosEstado}/1`, setParaderos);
+/*
     const ListarDistritos = useCallback(async () => {
-        const response = await axios.get(`http://localhost:8080/api/paraderos/parH/${d}`);
+        const response = await axios.get(`${paraderosEstado}/1`);
         setParaderos(response.data);
     }, []);
-
+*/
     useEffect(() => {
         if (datosaeditar) {
             setFormData({ ...datosaeditar });
             setEditando(true);
         }
-        ListarDistritos();
-    }, [ListarDistritos, datosaeditar]);
+        //ListarDistritos();
+    }, [datosaeditar]);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -56,18 +61,18 @@ export function ParaderoXRutaModal({ show, close, datosaeditar, editar, agregar,
                         <Form.Label>Paradero</Form.Label>
                         <Form.Select
                             name="ruta"
-                            value={formData.paraderosModel ? formData.paraderosModel.id_rp : ""}
+                            value={formData.paraderosModel ? formData.paraderosModel.id : ""}
                             onChange={(e) => {
                                 const selectedId = e.target.value;
                                 setFormData({ ...formData, paraderosModel: selectedId });
                             }}
                         >
-                            <option  value={formData.paraderosModel ? formData.paraderosModel.id_rp : ""}>
+                            <option  value={formData.paraderosModel ? formData.paraderosModel.id : ""}>
                                 {formData.paraderosModel ? formData.paraderosModel.nombre : "Seleccione una paradero"}
                             </option>
                             {paraderos.map((paradero) => (
                                 <option key={paradero.id} value={paradero.id}>
-                                    {paradero.nom_par}
+                                    {paradero.nombre}
                                 </option>
                             ))}
                         </Form.Select>

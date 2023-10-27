@@ -81,11 +81,7 @@ export function RutasTabla({ url, il, abrir, cerrar }) {
                                     className="button"
                                     variant={dato.estado ? "warning" : "primary"}
                                     onClick={() => {
-                                        if (dato.estado) {
-                                            cambiarEstado(dato.id);
-                                        } else {
-                                            cambiarEstado(dato.id);
-                                        }
+                                        cambiarEstado(dato.id);
                                     }}
                                 >
                                     {dato.estado ? "Deshabilitar" : "Habilitar"}

@@ -36,3 +36,7 @@ export const paraderosEmpresaEstado = `${paraderosURL}/xempresaAndEstado`;
 export const usuariosURL = `${baseURL}/usuarios`;
 export const usuariosEmpresa = `${usuariosURL}/xempresa`;
 export const usuariosEmpresaEstado = `${usuariosURL}/xempresaAndEstado`
+
+//RP Ruta por Paraderos
+export const rpURL = `${baseURL}/rp`;
+export const rpXRuta = `${rpURL}/xruta`

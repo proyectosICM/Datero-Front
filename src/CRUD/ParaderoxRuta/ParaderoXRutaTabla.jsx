@@ -5,7 +5,9 @@ import { Table } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { ParaderoXRutaModal } from "./ParaderoXRutaModal";
 import { BsArrowUpCircleFill, BsFillArrowDownCircleFill } from "react-icons/bs";
-import { RutasMapa } from "../RutasCRUD/rutasMapa";
+import { RutasMapa } from "../RutasCRUD/RutasMapa";
+import { rpURL, rpXRuta } from "../../API/apiurls";
+import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
 
 export function ParaderoXRutaTabla() {
     const [datos, setDatos] = useState([]);
@@ -13,92 +15,42 @@ export function ParaderoXRutaTabla() {
     const [datosEdit, setDatosEdit] = useState(null);
 
     const { ruta } = useParams();
-    const ListarDatos = useCallback(async () => {
-        const results = await axios.get(`http://localhost:8080/api/rp/rxp/${ruta}`);
-        setDatos(results.data);
-    }, [ruta]);
 
-    useEffect(() => {
-        ListarDatos();
-    }, [ListarDatos]);
-
+    
+    useListarElementos(`${rpXRuta}/${ruta}`, setDatos);
 
     const agregarParaderoXRuta = (pr) => {
         console.log(pr);
         const requestData = {
-            orden_rp: 1,
+            orden: 1,
             rutasModel: {
-                id_ruta: ruta,
+                id: ruta,
             },
             paraderosModel: {
-                id_par: pr.paraderosModel
+                id: pr.paraderosModel
             },
-            "est_rp": true
+            "estado": true
         };
-
-        console.log(requestData);
-        axios.post('http://localhost:8080/api/rp', requestData)
-            .then(() => {
-                closeModal();
-                ListarDatos();
-            })
-            .catch((error) => {
-                console.log(error);
-            })
+        agregarElemento(rpURL, requestData, closeModal);
     };
 
     const editarParaderoXRuta = (pr) => {
         const requestData = {
-            orden_rp: 1,
+            orden: 1,
             rutasModel: {
-                id_ruta: ruta,
+                id: ruta,
             },
             paraderosModel: {
-                id_par: pr.paraderosModel
+                id: pr.paraderosModel
             },
-            "est_rp": true
+            "estado": true
         };
-
-        console.log(pr);
-        console.log(requestData);
-        axios.put(`http://localhost:8080/api/rp/${pr.id_rp}`, requestData)
-            .then(() => {
-                closeModal();
-                ListarDatos();
-            })
-            .catch((error) => {
-                console.log(error);
-                console.log(error.response);
-            })
+        editarElemento(`${rpURL}/${pr.id}`, requestData, closeModal);
     };
 
-    const habilitarRP = (id) => {
-        axios
-            .get(`http://localhost:8080/api/rp/${id}`)
-            .then((response) => {
-                const rp = response.data;
-                rp.est_rp = true;
-                axios
-                    .put(`http://localhost:8080/api/rp/${id}`, rp)
-                    .then(() => {
-                        ListarDatos();
-                    });
-            })
-    };
-
-    const deshabilitarRP = (id) => {
-        axios
-            .get(`http://localhost:8080/api/rp/${id}`)
-            .then((response) => {
-                const rp = response.data;
-                rp.est_rp = false;
-                axios
-                    .put(`http://localhost:8080/api/rp/${id}`, rp)
-                    .then(() => {
-                        ListarDatos();
-                    });
-            })
-    };
+    const cambiarEstado = (id) => {
+        cambiarEstadoElemento(rpURL, id, `estado`);
+      };
 
     const edit = (bus) => {
         setDatosEdit(bus);
@@ -117,9 +69,9 @@ export function ParaderoXRutaTabla() {
     return (
         <div className="container-crud">
             <div>
-                <h1>RUTA {datos.length ? datos[0].rutasModel.nom_ruta : "Cargando datos"}</h1>
+                <h1>RUTA {datos.length ? datos[0].rutasModel.nombre : "Cargando datos"}</h1>
                 <h2>
-                    {datos.length ? datos[0].paraderosModel.distritosModel.nom_dis + " - " + datos[datos.length - 1].paraderosModel.distritosModel.nom_dis
+                    {datos.length ? datos[0].paraderosModel.distritosModel.nombre + " - " + datos[datos.length - 1].paraderosModel.distritosModel.nombre
                         : "Cargando Datos"}
                 </h2>
                 <Button variant="success" onClick={openModal}>Crear</Button>
@@ -138,24 +90,20 @@ export function ParaderoXRutaTabla() {
                 </thead>
                 <tbody>
                     {datos.map((dato) => (
-                        <tr key={dato.id_rp}>
-                            <td>{dato.orden_rp}</td>
-                            <td>{dato.rutasModel.nom_ruta}</td>
-                            <td>{dato.paraderosModel.nom_par}</td>
-                            <td>{dato.paraderosModel.distritosModel.nom_dis}</td>
+                        <tr key={dato.id}>
+                            <td>{dato.orden}</td>
+                            <td>{dato.rutasModel.nombre}</td>
+                            <td>{dato.paraderosModel.nombre}</td>
+                            <td>{dato.paraderosModel.distritosModel.nombre}</td>
                             <td>
                                 <Button onClick={() => edit(dato)}>Editar</Button>
                                 <Button
-                                    variant={dato.est_rp ? "warning" : "primary"}
+                                    variant={dato.estado ? "warning" : "primary"}
                                     onClick={() => {
-                                        if (dato.est_rp) {
-                                            deshabilitarRP(dato.id_rp);
-                                        } else {
-                                            habilitarRP(dato.id_rp);
-                                        }
+                                        cambiarEstado(dato.id);
                                     }}
                                 >
-                                    {dato.est_rp ? "Deshabilitar" : "Habilitar"}
+                                    {dato.estado ? "Deshabilitar" : "Habilitar"}
                                 </Button>
                                 <Button variant='success'>
                                     <BsArrowUpCircleFill /> 
