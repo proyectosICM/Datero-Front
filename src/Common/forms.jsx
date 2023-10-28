@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Form } from "react-bootstrap";
 import { TfiCreditCard } from "react-icons/tfi";
 import { FaTruck } from "react-icons/fa";

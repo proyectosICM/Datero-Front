@@ -12,6 +12,8 @@ import { UsuariosC } from "./CRUD/UsuariosCRUD/UsuariosC";
 import { ParaderosMapa } from "./CRUD/ParaderosCRUD/ParaderosMapa";
 import { ParaderoXRutaTabla } from "./CRUD/ParaderoxRuta/ParaderoXRutaTabla";
 import { RutasMapa } from "./CRUD/RutasCRUD/RutasMapa";
+import { ListadoVehiculos } from "./Common/ListadoVehiculos";
+import { Login } from "./Login/Login";
 
 export const routes = [
   { path: "/", component: <Inicio /> },
@@ -33,4 +35,6 @@ export const routes = [
   { path: '/rolesCRUD', component: <RolesC /> },
 
   { path: '/rutasMapa', component: <RutasMapa /> },
+  { path: '/listadoVehiculos', component: <ListadoVehiculos /> },
+  { path: '/login', component: <Login /> },
 ];

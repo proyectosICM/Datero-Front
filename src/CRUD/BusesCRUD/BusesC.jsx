@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BusesTabla } from "./BusesTabla";
 import { useParams } from "react-router-dom";
 import { BotonesCRUD } from "../../Common/BotonesCRUD";
-import { busesEmpresa, busesEmpresaEstado, busesURL } from './../../API/apiurls';
+import { busesEmpresa, busesEmpresaEstado } from './../../API/apiurls';
 
  
 export function BusesC() {

@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, {useState } from "react";
 import { Table } from "react-bootstrap";
 import { UsuariosModal } from "./UsuariosModal";

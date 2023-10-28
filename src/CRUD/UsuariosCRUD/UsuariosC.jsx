@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { UsuariosTabla } from "./UsuariosTabla";
 import { useParams } from "react-router-dom";
 import { BotonesCRUD } from "../../Common/BotonesCRUD";
-import { trabajadorDURL, trabajadorHURL, trabajadorTURL, usuariosEmpresa, usuariosEmpresaEstado, usuariosEstado, usuariosURL } from "../../API/apiurls";
+import { usuariosEmpresa, usuariosEmpresaEstado } from "../../API/apiurls";
 
 export function UsuariosC() {
   const { id } = useParams();

@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Card } from "react-bootstrap";
 import { RutasModal } from "./RutasModal";
 import { Link } from "react-router-dom";
