@@ -3,7 +3,6 @@ import { EmpresasC } from "./CRUD/EmpresasCRUD/EmpresasC";
 import { MenuCRUD } from "./CRUD/MenuCRUD";
 import { MenuEmpresas } from "./CRUD/MenuEmpresas";
 import { RutasC } from "./CRUD/RutasCRUD/RutasC";
-import { Inicio } from "./Common/Inicio";
 import { MapaDePrueba } from "./Common/MapaDePrueba";
 import { ParaderosC } from './CRUD/ParaderosCRUD/ParaderosC';
 import { DistritoC } from "./CRUD/DistritosCRUD/DistritosC";
@@ -14,6 +13,7 @@ import { ParaderoXRutaTabla } from "./CRUD/ParaderoxRuta/ParaderoXRutaTabla";
 import { RutasMapa } from "./CRUD/RutasCRUD/RutasMapa";
 import { ListadoVehiculos } from "./Common/ListadoVehiculos";
 import { Login } from "./Login/Login";
+import { Inicio } from "./Inicio/Inicio";
 
 export const routes = [
   { path: "/", component: <Inicio /> },
