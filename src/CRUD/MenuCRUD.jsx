@@ -9,7 +9,7 @@ import { SiGooglemaps } from "react-icons/si";
 import { AiOutlineUserSwitch } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import "../Styles/MenuCRUD.css";
-
+ 
 export function MenuCRUD() {
   const tablas = ["Empresas", "Buses", "Trabajadores", "Rutas", "Distritos", "Paraderos", "Roles de usuario", "Paradero de Rutas"];
   const iconos = [BsBuildingsFill, BsFillBusFrontFill, BsPersonVcard, FaMapSigns, TbBusStop, SiGooglemaps, AiOutlineUserSwitch, SiGooglemaps];

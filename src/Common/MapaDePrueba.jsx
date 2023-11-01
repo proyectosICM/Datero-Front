@@ -10,7 +10,7 @@ import { Vector as VectorSource } from 'ol/source';
 import { Feature } from 'ol';
 import { Point, LineString } from 'ol/geom';
 import Icon from 'ol/style/Icon';
-import Style from 'ol/style/Style';
+import Style from 'ol/style/Style'; 
 import { Stroke } from 'ol/style';
 import { Button } from 'react-bootstrap';
 import '../Styles/General.css';
@@ -118,11 +118,13 @@ export function MapaDePrueba() {
   }, [positionsHistory]);
 
   return (
-    <div className="container-registros">
+    <div style={{ width: '100%', height: '100%' }}>
+{      /*
       <Button onClick={handleMover} variant="success">
         Mover
       </Button>
-      <div ref={mapRef} className="mapa" />
+      */}
+      <div ref={mapRef} className="mapap" />
     </div>
   );
 }

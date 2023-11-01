@@ -1,55 +1,30 @@
-import React from "react";
-import { Container, Nav, Navbar } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import logo from '../Images/logo_icm.png';
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Nav from "react-bootstrap/Nav";
+import Navbar from "react-bootstrap/Navbar";
+import NavDropdown from "react-bootstrap/NavDropdown";
+import logo from "../Images/logo_icm.png";
 
-import { AiFillSetting, AiOutlineUser, AiOutlineCar, AiOutlineTable } from 'react-icons/ai';
-import { SiGooglemaps } from 'react-icons/si';
-import { FaClipboardList } from "react-icons/fa";
-
-import '../Styles/Navbar.css';
-
-export function NavBar () {
+export function NavBar() {
   return (
     <Navbar expand="lg" bg="dark" variant="dark" className="navbar-container">
-      <Container>
-        <Navbar.Brand>
-          <Link to='/' className="logo-link">
-            <img src={logo} alt="Logo Inicio" className="logo-img" />
-            <span className="logo-text">Inicio</span>
-          </Link>
+      <Container fluid>
+        <Navbar.Brand href="/" className="text-white">
+           Inicio
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbar-nav" />
-        <Navbar.Collapse id="navbar-nav">
-          <Nav className="me-auto barra">
-            <Link to='/login' className="linkes">
-              <AiOutlineUser className="link-icon" />
-              INICIO DE SESIÓN
-            </Link>
-            <Link to='/listvehiculos' className="linkes">
-              <AiOutlineCar className="link-icon" />
-              LISTADO DE VEHÍCULOS
-            </Link>
-            <Link to='/monitoreo' className="linkes">
-              <AiOutlineTable className="link-icon" />
-              TABLA DE MONITOREO
-            </Link>
-            <Link to='/prueba2' className="linkes">
-              <SiGooglemaps className="linkes" />
-              MAPA DE MONITOREO
-            </Link>
-            <Link to='/registros' className="linkes">
-              <FaClipboardList />
-              REGISTROS
-            </Link>
-            <Link to='/menuCRUD' className="linkes">
-              <AiFillSetting className="link-icon" />
-            </Link>
+        <Navbar.Toggle aria-controls="navbarScroll" className="text-white" /> {/* Agregar la clase 'text-white' al ícono */}
+        <Navbar.Collapse id="navbarScroll">
+          <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: "100px" }} navbarScroll>
+            <Nav.Link href="#action1" className="text-white">
+              Home
+            </Nav.Link>
           </Nav>
+          <Form className="d-flex">
+            <Button variant="outline-success">Cerrar Sesion</Button>
+          </Form>
         </Navbar.Collapse>
       </Container>
     </Navbar>
   );
-};
-
-
+}

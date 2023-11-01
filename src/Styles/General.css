@@ -12,26 +12,19 @@
     padding: 2%;
     width: 80%;
     margin: 2% auto;
-    border: 2px solid black;
+    border: 4px solid black;
     border-radius: 2%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
 }
 
-.mapa{
+.mapap{
     text-align: center;
     align-items: center;
     justify-content: center;
-    padding: 2%;
     width: 100%;
-    height: 400px;
-/*
-        width: 50%;
-    height: 800px;
-    */
-
-    margin: 2% auto;
+    height: 100%;
     border-radius: 2%;
     display: flex;
     flex-direction: row;
@@ -69,54 +62,87 @@
   margin: 2px;
 }
 
+.icono-card{
+  width: 5em;
+  height: 5em;
+  margin: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 
-/* BOTON */
-.theme-checkbox {
-    --toggle-size: 16px;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
-    width: 6.25em;
-    height: 3.125em;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
-    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
-    background-size: 205%;
-    background-position: 0;
-    -webkit-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
-    border-radius: 99em;
-    position: relative;
-    cursor: pointer;
-    font-size: var(--toggle-size);
-  }
-  
-  .theme-checkbox::before {
-    content: "";
-    width: 2.25em;
-    height: 2.25em;
-    position: absolute;
-    top: 0.438em;
-    left: 0.438em;
-    background: -webkit-gradient(linear, left top, right top, color-stop(50%, #efefef), color-stop(50%, #2a2a2a)) no-repeat;
-    background: -o-linear-gradient(left, #efefef 50%, #2a2a2a 50%) no-repeat;
-    background: linear-gradient(to right, #efefef 50%, #2a2a2a 50%) no-repeat;
-    background-size: 205%;
-    background-position: 100%;
-    border-radius: 50%;
-    -webkit-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
-  }
-  
-  .theme-checkbox:checked::before {
-    left: calc(100% - 2.25em - 0.438em);
-    background-position: 0;
-  }
-  
-  .theme-checkbox:checked {
-    background-position: 100%;
-  }
+}
 
-/* FIN Boton */
+.contenedor-iconos{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.cursor-pointer{
+  cursor: pointer;
+}
+
+.boton-atras{
+  width: 100%;
+}
+
+.panel-mapa{
+  text-align: center;
+  justify-content: center;
+  width: 70%;
+  height: 400px;
+  margin: 2% auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  border: 2px solid red;
+}
+
+.panel-boletos{
+  text-align: center;
+  justify-content: center;
+  width: 25%;
+  height: 400px;
+  margin: 2% auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  padding: 2rem;
+  background-color: #ccc;
+}
+
+.panel-registros{
+  text-align: center;
+  justify-content: center;
+  width: 70%;
+  height: 200px;
+  margin: 2% auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #ccc;
+
+}
+
+.panel-extra{
+  text-align: center;
+  justify-content: center;
+  width: 25%;
+  height: 200px;
+  margin: 2% auto;
+  border-radius: 25px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  background-color: #ccc;
+  padding: 2rem;
+}

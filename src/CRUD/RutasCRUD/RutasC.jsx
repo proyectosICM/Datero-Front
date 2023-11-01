@@ -36,10 +36,9 @@ export function RutasC() {
     return (
         <div className="container-crud">
             <div className="set-botones">
-                <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder="/CRUD"/>
+                <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder="/"/>
             </div>
-
-
+  
                 {tablaSeleccionada === "Habilitados" && (
                     <RutasTabla il={id} url={urlH} abrir={abrir} cerrar={handleCerrarModal} />
                 )}
