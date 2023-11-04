@@ -95,27 +95,27 @@
   text-align: center;
   justify-content: center;
   width: 70%;
-  height: 400px;
+  height: 350px;
   margin: 2% auto;
   border-radius: 25px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  border: 2px solid red;
+
 }
 
 .panel-boletos{
   text-align: center;
   justify-content: center;
   width: 25%;
-  height: 400px;
+  height: 350px;
   margin: 2% auto;
   border-radius: 25px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 
-  padding: 2rem;
+  padding: 1.5rem;
   background-color: #ccc;
 }
 
@@ -130,7 +130,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   background-color: #ccc;
-
+  overflow: auto;
 }
 
 .panel-extra{
@@ -145,4 +145,16 @@
   flex-wrap: wrap;
   background-color: #ccc;
   padding: 2rem;
+}
+
+.texto-titulo{
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.texto-subtitulo{
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
 }

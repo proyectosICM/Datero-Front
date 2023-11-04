@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { PanelBoletos } from "./SubPaneles/PanelBoletos";
 import { PanelExtra } from "./SubPaneles/PanelExtra";
 import { PanelRegistros } from "./SubPaneles/PanelRegistros";
+import { PanelMapa } from "./SubPaneles/PanelMapa";
 
 export function PanelBus() {
   const navigation = useNavigate();
@@ -13,9 +14,7 @@ export function PanelBus() {
       <Button className="boton-atras" onClick={() => navigation(`/buses/${id}`)}>
         Atras
       </Button>
-      <div className="panel-mapa">
-        <h1>Panel mapa</h1>
-      </div>
+      <PanelMapa />
 
       <PanelBoletos />
 

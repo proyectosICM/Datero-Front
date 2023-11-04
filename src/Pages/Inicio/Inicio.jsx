@@ -30,7 +30,7 @@ export function Inicio() {
           <h1>Ver registros de buses</h1>
         </div>
         <div className="administrar" onClick={() => navigation("/menu-administrador")}>
-          <img src={administrarIcono} alt="ruta-icono " className="icono-card" />
+          <img src={administrarIcono} alt="ruta-icono " className="iconos" />
           <h1>Administrar</h1>
         </div>
       </div>
