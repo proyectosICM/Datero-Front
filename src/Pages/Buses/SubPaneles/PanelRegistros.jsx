@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useListarElementos } from "../../../Hooks/CRUDHooks";
+import { registrorutaxbus } from "../../../API/apiurls";
 
 export function PanelRegistros() {
+  const [datos, setDatos] = useState();
+  const idbus = 1;
+
+  useListarElementos(`${registrorutaxbus}${idbus}`, setDatos);
+
   return (
     <div className="panel-registros">
-      <div style={{width: "100%"}}>
+      <div style={{ width: "100%" }}>
         <h5>Registro de Ruta</h5>
       </div>
 
@@ -18,30 +26,14 @@ export function PanelRegistros() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td style={{ textAlign: "center" }}>ABC-456</td>
-            <td style={{ textAlign: "center" }}>Pte Atocongo</td>
-            <td style={{ textAlign: "center" }}>08:05</td>
-            <td style={{ textAlign: "center" }}>08:10</td>
-          </tr>
-          <tr>
-            <td style={{ textAlign: "center" }}>ABC-456</td>
-            <td style={{ textAlign: "center" }}>Primavera</td>
-            <td style={{ textAlign: "center" }}>08:35</td>
-            <td style={{ textAlign: "center" }}>08:40</td>
-          </tr>
-          <tr>
-            <td style={{ textAlign: "center" }}>ABC-456</td>
-            <td style={{ textAlign: "center" }}>Perales</td>
-            <td style={{ textAlign: "center" }}>09:12</td>
-            <td style={{ textAlign: "center" }}>09:18</td>
-          </tr>
-          <tr>
-            <td style={{ textAlign: "center" }}>ABC-456</td>
-            <td style={{ textAlign: "center" }}>Pte Nuevo</td>
-            <td style={{ textAlign: "center" }}>09:24</td>
-            <td style={{ textAlign: "center" }}>09:30</td>
-          </tr>
+          {datos && datos.map((dato) => (
+              <tr key={dato.id}>
+                <td style={{ textAlign: "center" }}>{dato.busesModel.placa}</td>
+                <td style={{ textAlign: "center" }}>{dato.paraderosModel.nombre}</td>
+                <td style={{ textAlign: "center" }}>{dato.horaEsperada}</td>
+                <td style={{ textAlign: "center" }}>{dato.horaLlegada}</td>
+              </tr>
+          ))}
         </tbody>
       </Table>
     </div>

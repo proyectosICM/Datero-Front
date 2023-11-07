@@ -39,4 +39,17 @@ export const usuariosEmpresaEstado = `${usuariosURL}/xempresaAndEstado`
 
 //RP Ruta por Paraderos
 export const rpURL = `${baseURL}/rp`;
-export const rpXRuta = `${rpURL}/xruta`
+export const rpXRuta = `${rpURL}/xruta`;
+
+//Boleto
+// http://localhost:8080/api/boletos/xempresaAndRuta/19/2
+export const boleto = `${baseURL}/boletos`;
+export const boletoxruta = `${boleto}/xempresaAndRuta/`
+
+//Conteo de Boletos
+export const conteob = `${baseURL}/conteoB`;
+export const conteobxbus = `${conteob}/conteoPorBusYFechaActual/`
+
+//Registro ruta
+export const registroruta = `${baseURL}/registroRuta`
+export const registrorutaxbus = `${registroruta}/registrosPorBusYFechaActual/`

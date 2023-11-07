@@ -17,7 +17,7 @@ export function MenuBuses() {
         Atras
       </Button>
         {datos && datos.map((dato) => (
-          <CardBuses key={dato.id} />
+          <CardBuses key={dato.id}  dato={dato}/>
         ))}
       </div>
     </div>

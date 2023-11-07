@@ -2,7 +2,7 @@ import axios from "axios";
 import { Button } from "react-bootstrap";
 import React, { useCallback, useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { ParaderoXRutaModal } from "./ParaderoXRutaModal";
 import { BsArrowUpCircleFill, BsFillArrowDownCircleFill } from "react-icons/bs";
 import { RutasMapa } from "../RutasCRUD/RutasMapa";
@@ -10,6 +10,8 @@ import { rpURL, rpXRuta } from "../../API/apiurls";
 import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
 
 export function ParaderoXRutaTabla() {
+  const idemp = 19;
+  const navigation = useNavigate();
   const [datos, setDatos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
@@ -17,7 +19,7 @@ export function ParaderoXRutaTabla() {
   const { ruta } = useParams();
 
   useListarElementos(`${rpXRuta}/${ruta}`, setDatos);
-console.log(`${rpXRuta}/${ruta}dsad`)
+
   const agregarParaderoXRuta = (pr) => {
     console.log(pr);
     const requestData = {
@@ -66,7 +68,7 @@ console.log(`${rpXRuta}/${ruta}dsad`)
 
   return (
     <div className="container-crud">
-      <Button> Atras</Button>
+      <Button className="boton-atras" onClick={() => navigation(`/rutasxemp/${idemp}`)}> Atras</Button>
       <div>
         <h1>RUTA {datos.length ? datos[0].rutasModel.nombre : "Cargando datos"}</h1>
         <h2>
