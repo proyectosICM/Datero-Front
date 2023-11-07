@@ -1,11 +1,9 @@
-import axios from "axios";
 import { Button } from "react-bootstrap";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router-dom";
 import { ParaderoXRutaModal } from "./ParaderoXRutaModal";
 import { BsArrowUpCircleFill, BsFillArrowDownCircleFill } from "react-icons/bs";
-import { RutasMapa } from "../RutasCRUD/RutasMapa";
 import { rpURL, rpXRuta } from "../../API/apiurls";
 import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
 
@@ -121,7 +119,6 @@ export function ParaderoXRutaTabla() {
         </tbody>
       </Table>
       <ParaderoXRutaModal show={showModal} close={closeModal} agregar={agregarParaderoXRuta} datosaeditar={datosEdit} editar={editarParaderoXRuta} />
-{     /* <RutasMapa dat={datos} /> */}
     </div>
   );
 }

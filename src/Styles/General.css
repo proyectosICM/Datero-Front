@@ -64,7 +64,7 @@
 
 .icono-card{
   width: 5em;
-  height: 5em;
+  height: 5em; 
   margin: 0.5rem;
   cursor: pointer;
   text-align: center;
@@ -114,9 +114,9 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-
   padding: 1.5rem;
   background-color: #ccc;
+  /* overflow: auto; */
 }
 
 .panel-registros{

@@ -53,15 +53,11 @@ export function UsuariosTabla({ url, il, abrir, cerrar }) {
     const cambiarEstado = (id) => {
         cambiarEstadoElemento(usuariosURL, id, `estado`);
       };
-      
-
-
 
     const edit = (trabajador) => {
         setDatosEdit(trabajador);
         setShowModal(true);
     }
-
 
     const closeModal = () => {
         cerrar();

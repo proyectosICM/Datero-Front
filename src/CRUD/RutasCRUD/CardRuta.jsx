@@ -8,9 +8,6 @@ import { useNavigate } from "react-router-dom";
 
 export function CardRuta({dato, edit, cambiarEstado}) {
     const navigation = useNavigate();
-    const handlePRueba = () => {
-        alert("ds");
-    }
     const idemp = 1 ;
 
   return (
@@ -20,7 +17,6 @@ export function CardRuta({dato, edit, cambiarEstado}) {
           <h1>Ruta {dato.nombre}</h1>
         </Card.Title>
         <div className="contenedor-iconos">
-
           <img src={configuracionIcono} alt="ruta-icono " className="icono-card" onClick={() => navigation(`/paraderoxruta/${idemp}`)} />
           <img src={mapaIcono} alt="ruta-icono " className="icono-card" onClick={() => navigation(`/rutasMapa/${dato.id}`)} />
           <img src={editarIcono} alt="ruta-icono " className="icono-card" onClick={() => edit()} />

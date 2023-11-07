@@ -1,5 +1,4 @@
-import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { ParaderosModal } from "./ParaderosModal";
 import { SiGooglemaps } from "react-icons/si";

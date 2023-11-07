@@ -1,9 +1,7 @@
 import axios from "axios";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { DistritoModal } from "./DistritosModal";
-
-
 import { distritosURL } from '../../API/apiurls';
 import { BotonesDeGestion } from "../../Common/BotonesDeGestion";
 import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
@@ -15,7 +13,6 @@ export function DistritoTabla({ url, abrir, cerrar }) {
     const [datosEdit, setDatosEdit] = useState(null);
 
     useListarElementos(url, setDatos);
-
 
     const agregarDistrito = (distrito) => {
         agregarElemento(distritosURL, distrito, closeModal);
@@ -30,12 +27,10 @@ export function DistritoTabla({ url, abrir, cerrar }) {
         cambiarEstadoElemento(distritosURL, id, `estado`);
     };
 
-
     const edit = (bus) => {
         setDatosEdit(bus);
         setShowModal(true);
     }
-
 
     const closeModal = () => {
         cerrar();

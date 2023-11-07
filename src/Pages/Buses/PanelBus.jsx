@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Table } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { PanelBoletos } from "./SubPaneles/PanelBoletos";
 import { PanelExtra } from "./SubPaneles/PanelExtra";
@@ -15,9 +15,7 @@ export function PanelBus() {
         Atras
       </Button>
       <PanelMapa />
-
       <PanelBoletos />
-
       <PanelRegistros />
       <PanelExtra />
     </div>

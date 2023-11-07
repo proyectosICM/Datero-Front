@@ -82,7 +82,6 @@ export function UsuariosModal({
     setEditando(false);
   };
 
-
   const handleClose = () => {
     if (datosaeditar) {
       limpiar();

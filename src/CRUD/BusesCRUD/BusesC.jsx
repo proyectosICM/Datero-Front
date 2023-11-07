@@ -4,19 +4,15 @@ import { useParams } from "react-router-dom";
 import { BotonesCRUD } from "../../Common/BotonesCRUD";
 import { busesEmpresa, busesEmpresaEstado } from './../../API/apiurls';
 
- 
 export function BusesC() {
 
     const { id } = useParams();
     const [abrir, setAbrir] = useState(false);
     const [tablaSeleccionada, setTablaSeleccionada] = useState("Todos");
 
-
     const urlT = `${busesEmpresa}/${id}`;
     const urlH = `${busesEmpresaEstado}/${id}/1`;
     const urlD = `${busesEmpresaEstado}/${id}/0`;
-
-
 
     const handleMostrarTabla = (tabla) => {
         setTablaSeleccionada(tabla);

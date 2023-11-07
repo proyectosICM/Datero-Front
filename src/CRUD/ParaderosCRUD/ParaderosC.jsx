@@ -14,7 +14,7 @@ export function ParaderosC(){
     const handleMostrarTabla = (tabla) =>{
         setTablaSeleccionada(tabla);
     }
- 
+    
     const handleAbrirModal = () => {
         if(!abrir){ 
             setAbrir(true);

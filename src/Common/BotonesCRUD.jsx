@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { FaClipboardList } from "react-icons/fa";
 import '../Styles/BotonesCRUD.css'
 
-
 export function BotonesCRUD({ activador, retroceder, btnTabla, abrir }) {
 
     return (
@@ -30,6 +29,5 @@ export function BotonesCRUD({ activador, retroceder, btnTabla, abrir }) {
                 </Button>
             </ButtonGroup>
         </>
-
     );
 }

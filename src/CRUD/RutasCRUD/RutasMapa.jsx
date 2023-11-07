@@ -11,20 +11,19 @@ import { Point } from 'ol/geom';
 import Icon from 'ol/style/Icon';
 import Style from 'ol/style/Style';
 import CircleStyle from 'ol/style/Circle';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
 import { useListarElementos } from '../../Hooks/CRUDHooks';
 import { rpXRuta } from '../../API/apiurls';
 
 export function RutasMapa({ dat }) {
   const { id} = useParams();
-
   const [datos, setDatos] = useState([]);
-  useListarElementos(`${rpXRuta}/${id}`, setDatos);
-  console.log(`${rpXRuta}/${id}`)
   const position = [-76.9730944, -12.0582007];
   const mapRef = useRef(null);
   const [map, setMap] = useState(null);
+
+  useListarElementos(`${rpXRuta}/${id}`, setDatos);
 
   useEffect(() => {
     setDatos(dat);

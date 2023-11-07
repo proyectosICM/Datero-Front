@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { Button, Card } from "react-bootstrap";
 import { RutasModal } from "./RutasModal";
-import { Link } from "react-router-dom";
 import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
 import { rutasURL } from "../../API/apiurls";
 import "../../Styles/General.css";
@@ -13,7 +11,6 @@ export function RutasTabla({ url, il, abrir, cerrar }) {
 
   useListarElementos(url, setDatos);
   
-
   const agregarBus = (ruta) => {
     const requestData = {
       nombre: ruta.nombre,

@@ -1,6 +1,5 @@
 import axios from "axios";
-import React, { useCallback, useState } from "react";
-import { useEffect } from "react";
+import React, { useState } from "react";
 import { Table } from "react-bootstrap";
 import { BusesModal } from "./BusesModal";
 import { busesURL } from "../../API/apiurls";

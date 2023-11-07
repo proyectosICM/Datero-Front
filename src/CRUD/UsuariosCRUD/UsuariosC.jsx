@@ -13,12 +13,9 @@ export function UsuariosC() {
   const urlH = `${usuariosEmpresaEstado}/${id}/1`;
   const urlD = `${usuariosEmpresaEstado}/${id}/0`;
 
-
   const handleMostrarTabla = (tabla) => {
     setTablaSeleccionada(tabla);
   };
-
-
 
   const handleAbrirModal = () => {
     if (!abrir) {

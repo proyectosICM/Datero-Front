@@ -1,13 +1,11 @@
 import React from "react";
 import { Button, Card } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { BsBuildingsFill } from "react-icons/bs";
 import { BsFillBusFrontFill } from "react-icons/bs";
 import { BsPersonVcard } from "react-icons/bs";
-import { FaMapSigns } from "react-icons/fa";
 import { TbBusStop } from "react-icons/tb";
 import { SiGooglemaps } from "react-icons/si";
-import { AiOutlineUserSwitch } from "react-icons/ai";
+
 
 export function MenuAdministrador() {
   const navigation = useNavigate();

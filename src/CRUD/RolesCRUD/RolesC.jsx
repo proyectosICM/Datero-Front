@@ -5,7 +5,6 @@ import { BotonesCRUD } from "../../Common/BotonesCRUD";
 import { rolesEstado, rolesURL } from "../../API/apiurls";
 
 export function RolesC(){
-
     const {id_emp} = useParams();
     const [mostrartabla, setMostrarTabla] = useState(true)
     const [tablaSeleccionada, setTablaSeleccionada] = useState("Habilitados");
@@ -46,7 +45,6 @@ export function RolesC(){
             {tablaSeleccionada === "Todos" && (
                 <RolesTabla il={id_emp} url={urlT} abrir={abrir} cerrar={handleCerrarModal}/>
             )}
-      
         </div>
     );
 }

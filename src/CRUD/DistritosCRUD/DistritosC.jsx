@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { DistritoTabla } from "./DistritosTabla";
 import { BotonesCRUD } from "../../Common/BotonesCRUD";
-
 import {distritosURL, distritosEstado} from '../../API/apiurls';
 
 export function DistritoC(){

@@ -38,7 +38,6 @@ export function DistritoModal({show, close, datosaeditar, editar, agregar}){
         close();
       };
     
- 
     return(
         <div>
             <Modal show={show} onHide={handleClose}>

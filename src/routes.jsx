@@ -47,5 +47,4 @@ export const routes = [
   { path: "/listadoVehiculos", component: <ListadoVehiculos /> },
   { path: "/login", component: <Login /> },
 
-  
 ];

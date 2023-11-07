@@ -7,7 +7,6 @@ import { InputSimple, SelectCruzado } from "../../Common/forms";
 import { useListarElementos } from "../../Hooks/CRUDHooks";
 import { rutasURL, usuariosURL } from "../../API/apiurls";
 
-
 export function BusesModal({ show, close, datosaeditar, editar, agregar, emp }) {
 
     const [trabajadores, setTrabajadores] = useState([]);
@@ -18,7 +17,6 @@ export function BusesModal({ show, close, datosaeditar, editar, agregar, emp }) 
 
     useListarElementos(rutasURL, setRutas);
     
-
     const [formData, setFormData] = useState({
         modelo: "",
         placa: "",
@@ -26,7 +24,6 @@ export function BusesModal({ show, close, datosaeditar, editar, agregar, emp }) 
         usuariosModel: null,
         rutasModel: null
     });
-
 
     useEffect(() => {
         if (datosaeditar) {
@@ -76,15 +73,12 @@ export function BusesModal({ show, close, datosaeditar, editar, agregar, emp }) 
         setEditando(false);
     }
 
-    
-
   const handleClose = () => {
     if (datosaeditar) {
       limpiar();
     }
     close();
   };
-
 
     return (
         <div>
@@ -111,9 +105,6 @@ export function BusesModal({ show, close, datosaeditar, editar, agregar, emp }) 
                             <InputSimple label="Modelo" setDatos={setFormData} val={formData.modelo}
                                 onChan={(e) => setFormData({ ...formData, modelo: e.target.value })}
                             />
-
-
-
                         </div>
 
                         <div className="form-row">
@@ -144,9 +135,7 @@ export function BusesModal({ show, close, datosaeditar, editar, agregar, emp }) 
                                 </Form.Select>
                             </Form.Group>
                         </div>
-
-
-
+                        
                         <Button type="submit">Crear</Button>
                         <Button onClick={handleClose}>Cerrar</Button>
                     </Form>

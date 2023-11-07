@@ -5,7 +5,6 @@ import { FaTruck } from "react-icons/fa";
 
 export function InputSimple({ label,val, onChan }) {
 
-    
     const iconos = [TfiCreditCard, FaTruck];
     
     var i = 0;
@@ -32,15 +31,11 @@ export function InputSimple({ label,val, onChan }) {
                     placeholder={label}
                     value={val}
                     onChange={onChan}
-                    
                 />
             </Form.Group>
         </>
     );
 }
-
-
-
 
 export function SelectCruzado({ val, onChan, namer, arr, idField, displayField }) {
     return (
@@ -60,7 +55,6 @@ export function SelectCruzado({ val, onChan, namer, arr, idField, displayField }
 
   
 export function PruebaInp({val, namer, arr}){
-
 
     return(
         <>

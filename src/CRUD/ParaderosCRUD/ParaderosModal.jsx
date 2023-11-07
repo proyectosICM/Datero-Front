@@ -6,7 +6,6 @@ import { MdEditLocationAlt } from "react-icons/md";
 import { SiGooglemaps } from "react-icons/si";
 import { distritosURL } from "../../API/apiurls";
 
-
 export function ParaderosModal({ show, close, datosaeditar, editar, agregar, il }) {
 
     const [formData, setFormData] = useState({
@@ -59,7 +58,6 @@ export function ParaderosModal({ show, close, datosaeditar, editar, agregar, il 
         setFormData({ nombre: "", estado: true, distritosModel: null, longitud: "", latitud: "" });
         setEditando(false);
     }
-
     
   const handleClose = () => {
     if (datosaeditar) {
@@ -67,7 +65,6 @@ export function ParaderosModal({ show, close, datosaeditar, editar, agregar, il 
     }
     close();
   };
-
 
     return (
         <div>
