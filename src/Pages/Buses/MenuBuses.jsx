@@ -4,6 +4,7 @@ import { CardBuses } from "./CardBuses";
 import { busesEmpresaEstado } from "../../API/apiurls";
 import { useListarElementos } from "../../Hooks/CRUDHooks";
 import { Button } from "react-bootstrap";
+import "./BusesStyles.css";
 
 export function MenuBuses() {
   const navigation = useNavigate();
@@ -13,12 +14,12 @@ export function MenuBuses() {
   return (
     <div className="container-crud">
       <div className="card-container">
-      <Button className="boton-atras" onClick={() => navigation(`/`)}>
-        Atras
-      </Button>
-        {datos && datos.map((dato) => (
-          <CardBuses key={dato.id}  dato={dato}/>
-        ))}
+        <Button className="boton-atras" onClick={() => navigation(`/`)}>
+          Atras
+        </Button>
+
+        {datos && datos.map((dato) => <CardBuses key={dato.id} dato={dato} />)}
+
       </div>
     </div>
   );

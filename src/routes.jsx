@@ -19,6 +19,7 @@ import { MenuAdministrador } from "./Pages/Administrar/MenuAdministrador";
 import { MapaDePrueba } from "./Common/MapaDePrueba";
 import { MenuBuses } from "./Pages/Buses/MenuBuses";
 import { PanelBus } from "./Pages/Buses/PanelBus";
+import { PanelHistorialBus } from "./Pages/Buses/HistorialBus/PanelHistorialBus";
 
 export const routes = [
   //Pages
@@ -46,5 +47,7 @@ export const routes = [
   { path: "/rutasMapa/:id", component: <RutasMapa /> },
   { path: "/listadoVehiculos", component: <ListadoVehiculos /> },
   { path: "/login", component: <Login /> },
+
+  { path: "/historial-bus", component: <PanelHistorialBus />}
 
 ];

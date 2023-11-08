@@ -53,3 +53,6 @@ export const conteobxbus = `${conteob}/conteoPorBusYFechaActual/`
 //Registro ruta
 export const registroruta = `${baseURL}/registroRuta`
 export const registrorutaxbus = `${registroruta}/registrosPorBusYFechaActual/`
+
+//Historial
+export const historial = `http://localhost:8080/api/conteoB/last-7-days-ordered`
