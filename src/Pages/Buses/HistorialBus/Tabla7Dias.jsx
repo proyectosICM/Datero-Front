@@ -1,11 +1,48 @@
-import React from "react";
-
+import React, { useState, useEffect } from "react";
+import { Button, Card, Table } from "react-bootstrap";
+import { useNavigate, useParams } from "react-router-dom";
+import { useListarElementos } from "../../../Hooks/CRUDHooks";
+import ExcelJS from "exceljs";
+import axios from "axios";
 export function Tabla7Dias() {
     const navigation = useNavigate();
+    const { dias } = useParams();
 
     const [datos, setDatos] = useState([]);
+    const [diasSelected, setDiasSelected] = useState();
+
+    const semanaurl= "http://localhost:8080/api/conteoB/last-7-days-ordered/1";
+
+
+    const mesurl = "http://localhost:8080/api/conteoB/last-month-ordered/1";
+
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          if (dias === "7") {
+            setDiasSelected(semanaurl);
+          } else if (dias === "31") {
+            setDiasSelected(mesurl);
+          }
   
-    useListarElementos("http://localhost:8080/api/conteoB/last-7-days-ordered", setDatos);
+          // Agrega el código para manejar la llamada a la API aquí
+          const response = await axios.get(diasSelected); // Asegúrate de importar Axios
+  
+          // Aquí puedes procesar la respuesta según tus necesidades
+          console.log(response.data);
+  
+          // Actualiza el estado con los datos obtenidos
+          setDatos(response.data);
+        } catch (error) {
+          // Manejo de errores
+          console.error("Error al obtener datos de la API:", error.message);
+          // Puedes agregar lógica adicional según tus necesidades, como mostrar un mensaje de error al usuario
+        }
+      };
+  
+      fetchData();
+    }, [dias, diasSelected]);
+
   
     // Función para agrupar datos por día
     const agruparPorDia = (datos) => {
@@ -70,10 +107,10 @@ export function Tabla7Dias() {
     
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/panel-bus`)}>
+      <Button className="boton-atras" onClick={() => navigation(`/historial-bus`)}>
         Atras
       </Button>
-      <h1>Historial últimos 7 días</h1>
+      <h1>Historial últimos {dias} días</h1>
       <Table striped bordered hover>
         <thead>
           <tr></tr>

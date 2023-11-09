@@ -20,6 +20,7 @@ import { MapaDePrueba } from "./Common/MapaDePrueba";
 import { MenuBuses } from "./Pages/Buses/MenuBuses";
 import { PanelBus } from "./Pages/Buses/PanelBus";
 import { PanelHistorialBus } from "./Pages/Buses/HistorialBus/PanelHistorialBus";
+import { Tabla7Dias } from "./Pages/Buses/HistorialBus/Tabla7Dias";
 
 export const routes = [
   //Pages
@@ -27,7 +28,7 @@ export const routes = [
   { path: "/buses/:id", component: <MenuBuses /> },
   { path: "/mapa", component: <MapaDePrueba /> },
   { path: "/menu-administrador", component: <MenuAdministrador /> },
-  { path: "/panel-bus", component: <PanelBus /> },
+  { path: "/panel-bus/:id", component: <PanelBus /> },
 
   //CRUD
 
@@ -48,6 +49,7 @@ export const routes = [
   { path: "/listadoVehiculos", component: <ListadoVehiculos /> },
   { path: "/login", component: <Login /> },
 
-  { path: "/historial-bus", component: <PanelHistorialBus />}
+  { path: "/historial-bus/:id", component: <PanelHistorialBus />},
+  { path: "/historial/:dias", component: <Tabla7Dias />}
 
 ];

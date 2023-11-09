@@ -3,11 +3,11 @@ import { Card } from "react-bootstrap";
 import mapaIcono from "../../Images/mapaIcono.png";
 import { useNavigate } from "react-router-dom";
 import './BusesStyles.css'
-
+ 
 export function CardBuses({ dato }) {
   const navigation = useNavigate();
   return (
-    <Card className="crud-card cursor-pointer" onClick={() => navigation("/panel-bus")}>
+    <Card className="crud-card cursor-pointer" onClick={() => navigation(`/panel-bus/${dato.id}`)}>
       <div class="contenedor-card-bus" >
         <div class="first-content-bus" >
           <span style={{ fontSize: "20px" }}>Placa: {dato.placa}</span>

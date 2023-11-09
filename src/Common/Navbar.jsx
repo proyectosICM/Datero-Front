@@ -5,13 +5,16 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../Images/logo_icm.png";
+import { useNavigate } from "react-router-dom";
 
-export function NavBar() {
+export function NavBar() { 
+  const navigation = useNavigate();
   return (
     <Navbar expand="lg" bg="dark" variant="dark" className="navbar-container">
       <Container fluid>
-        <Navbar.Brand href="/" className="text-white">
+        <Navbar.Brand style={{cursor: "pointer"}} onClick={() => navigation("/")} className="text-white">
            Inicio
+           <img src={logo} alt="ruta-icono " className="icono-card"/>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" className="text-white" /> {/* Agregar la clase 'text-white' al ícono */}
         <Navbar.Collapse id="navbarScroll">
