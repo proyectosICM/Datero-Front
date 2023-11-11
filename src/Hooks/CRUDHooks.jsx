@@ -8,7 +8,7 @@ export function useListarElementos(url, setDatos) {
   }, [url, setDatos]);
 
   useEffect(() => {
-    const intervalId = setInterval(ListarDatos, 500);
+    const intervalId = setInterval(ListarDatos, 1000);
     ListarDatos();
     return () => {
       clearInterval(intervalId);

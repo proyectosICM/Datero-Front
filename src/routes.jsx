@@ -21,8 +21,13 @@ import { MenuBuses } from "./Pages/Buses/MenuBuses";
 import { PanelBus } from "./Pages/Buses/PanelBus";
 import { PanelHistorialBus } from "./Pages/Buses/HistorialBus/PanelHistorialBus";
 import { Tabla7Dias } from "./Pages/Buses/HistorialBus/Tabla7Dias";
+import { MapaBuses } from "./Maps/MapaBuses";
 
 export const routes = [
+
+  //Maps 
+  { path: "/mapa-buses", component: <MapaBuses />},
+
   //Pages
   { path: "/", component: <Inicio /> },
   { path: "/buses/:id", component: <MenuBuses /> },

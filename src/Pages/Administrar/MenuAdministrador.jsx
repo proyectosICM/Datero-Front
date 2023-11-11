@@ -9,13 +9,13 @@ import { SiGooglemaps } from "react-icons/si";
 
 export function MenuAdministrador() {
   const navigation = useNavigate();
-
+  const idemp = 19;
   const tablas = ["Buses", "Trabajadores", "Rutas",  "Paraderos"];
   const iconos = [BsFillBusFrontFill, BsPersonVcard, TbBusStop, SiGooglemaps];
   const rutas = [
-    `/menuEmpresas/${"busesxemp"}`,
-    `/menuEmpresas/${"usuariosxemp"}`,
-    `/menuEmpresas/${"rutasxemp"}`,
+    `/busesxemp/${idemp}`,
+    `/usuariosxemp/${idemp}`,
+    `/rutasxemp/${idemp}`,
     `/paraderosCRUD`
   ];
 

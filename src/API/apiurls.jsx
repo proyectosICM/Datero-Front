@@ -3,6 +3,8 @@ const base = "http://localhost:8080"
 
 const baseURL = `${base}/api`;
 
+const tomtomAPIKEY = 'h7fg9TqEyAohgMGDrKynpp3vqsXdB9ZF'
+
 //CRUD
 //Empresas
 export const empresasURL = `${baseURL}/empresas`;
