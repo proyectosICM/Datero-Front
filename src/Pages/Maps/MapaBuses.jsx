@@ -1,11 +1,11 @@
 import React, { useEffect, useState, useRef } from "react";
 import "@tomtom-international/web-sdk-maps/dist/maps.css";
 import tt from "@tomtom-international/web-sdk-maps";
-import { useListarElementos } from "../Hooks/CRUDHooks";
-import { busesEmpresa, busesURL } from '../API/apiurls';
-import busIcon from '../Images/busesIcono.png';
+import busIcon from '../../Images/busesIcono.png';
+import paraderoIcon from '../../Images/paraderoS.png';
 
-export function MapaBuses({buses}) {
+
+export function MapaBuses({buses, tipo}) {
 
 
   // Referencia para almacenar la instancia del mapa
@@ -15,7 +15,15 @@ export function MapaBuses({buses}) {
   useEffect(() => {
     if (!mapRef.current && buses) {
       // Filtrar los buses que tienen coordenadas válidas
-      const busesConCoordenadas = buses.filter(bus => bus.latitud && bus.longitud);
+
+      let busesConCoordenadas;
+
+      if (tipo === "bus") {
+        busesConCoordenadas = buses.filter(bus => bus.latitud && bus.longitud);
+      } else if (tipo === "paradero") {
+        busesConCoordenadas = buses.filter(bus => bus.paraderosModel.latitud && bus.paraderosModel.longitud);
+      }
+      console.log(busesConCoordenadas)
 
       // Inicializar el mapa con tu clave de API
       const map = tt.map({
@@ -28,29 +36,34 @@ export function MapaBuses({buses}) {
       // Crear marcadores para cada bus con icono personalizado y título
       busesConCoordenadas.forEach(bus => {
         const marker = new tt.Marker({
-          element: createCustomMarker(bus.placa), // Llama a la función para crear un icono personalizado
-        }).setLngLat([bus.longitud, bus.latitud]).addTo(map);
+          element: createCustomMarker(tipo === 'bus' ? bus.placa : bus.nombre), // Llama a la función para crear un icono personalizado
+        }).setLngLat(tipo === 'bus' ?  [bus.longitud, bus.latitud] : [bus.paraderosModel.longitud, bus.paraderosModel.latitud] ).addTo(map);
       });
 
       // Ajustar el centro y el zoom del mapa para mostrar todos los marcadores
       const bounds = new tt.LngLatBounds();
       busesConCoordenadas.forEach(bus => {
-        bounds.extend([bus.longitud, bus.latitud]);
+        if (tipo === 'bus') {
+          bounds.extend([bus.longitud, bus.latitud]);
+        } else {
+          bounds.extend([bus.paraderosModel.longitud, bus.paraderosModel.latitud]);
+        }
       });
       map.fitBounds(bounds, { padding: 50 });
 
       // Actualizar la referencia con la instancia del mapa
       mapRef.current = map;
     }
+  
   }, [buses]);
 
   // Función para crear un icono personalizado (imagen de autobús) con título
   const createCustomMarker = (title) => {
     const markerElement = document.createElement('div');
     markerElement.className = 'custom-marker';
-    markerElement.style.backgroundImage = `url(${busIcon})`;
-    markerElement.style.width = '8em';
-    markerElement.style.height = '8em';
+    markerElement.style.backgroundImage = `url(${tipo === "bus" ? busIcon : paraderoIcon})`;
+    markerElement.style.width = '150px';
+    markerElement.style.height = '150px';
 
     // Crear un elemento de título
     const titleElement = document.createElement('div');

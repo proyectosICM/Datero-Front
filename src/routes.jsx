@@ -10,7 +10,7 @@ import { RolesC } from "./CRUD/RolesCRUD/RolesC";
 import { UsuariosC } from "./CRUD/UsuariosCRUD/UsuariosC";
 import { ParaderosMapa } from "./CRUD/ParaderosCRUD/ParaderosMapa";
 import { ParaderoXRutaTabla } from "./CRUD/ParaderoxRuta/ParaderoXRutaTabla";
-import { RutasMapa } from "./CRUD/RutasCRUD/RutasMapa";
+
 import { ListadoVehiculos } from "./Common/ListadoVehiculos";
 import { Login } from "./Pages/Login/Login";
 import { Inicio } from "./Pages/Inicio/Inicio";
@@ -21,24 +21,31 @@ import { MenuBuses } from "./Pages/Buses/MenuBuses";
 import { PanelBus } from "./Pages/Buses/PanelBus";
 import { PanelHistorialBus } from "./Pages/Buses/HistorialBus/PanelHistorialBus";
 import { Tabla7Dias } from "./Pages/Buses/HistorialBus/Tabla7Dias";
-import { MapaBuses } from "./Maps/MapaBuses";
+
+import { MapaFullSceen } from "./Pages/Maps/MapaFullScreen";
+import { MapaBuses } from "./Pages/Maps/MapaBuses";
+import { RutasMapa } from "./Pages/Maps/RutasMapa";
+
 
 export const routes = [
 
   //Maps 
   { path: "/mapa-buses", component: <MapaBuses />},
+  { path: "/map-fullScreen",  component: <MapaFullSceen />},
+  { path: "/rutasMapa/:id", component: <RutasMapa /> },
 
   //Pages
   { path: "/", component: <Inicio /> },
   { path: "/buses/:id", component: <MenuBuses /> },
   { path: "/mapa", component: <MapaDePrueba /> },
   { path: "/menu-administrador", component: <MenuAdministrador /> },
-  { path: "/panel-bus/:id", component: <PanelBus /> },
+  { path: "/panel-bus/:idbus/:idruta", component: <PanelBus /> },
 
   //CRUD
 
   { path: "/CRUD", component: <MenuCRUD /> },
   { path: "/menuEmpresas/:ruta", component: <MenuEmpresas /> },
+
   //Empresa
   { path: "/empresasCRUD", component: <EmpresasC /> },
   { path: "/busesxemp/:id", component: <BusesC /> },
@@ -50,7 +57,7 @@ export const routes = [
   { path: "/paraderoxruta/:ruta", component: <ParaderoXRutaTabla /> },
   { path: "/rolesCRUD", component: <RolesC /> },
 
-  { path: "/rutasMapa/:id", component: <RutasMapa /> },
+
   { path: "/listadoVehiculos", component: <ListadoVehiculos /> },
   { path: "/login", component: <Login /> },
 

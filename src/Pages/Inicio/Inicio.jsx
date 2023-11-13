@@ -6,9 +6,10 @@ import administrarIcono from "../../Images/administrarIcono.png";
 import busesIcono from "../../Images/busesIcono.png";
 import { MapaDePrueba } from "../../Common/MapaDePrueba";
 import { useNavigate } from "react-router-dom";
-import { MapaBuses } from "../../Maps/MapaBuses";
+
 import { busesEmpresa } from "../../API/apiurls";
 import { useListarElementos } from "../../Hooks/CRUDHooks";
+import { MapaBuses } from "../Maps/MapaBuses";
 
 export function Inicio() {
   const navigation = useNavigate();
@@ -27,7 +28,7 @@ export function Inicio() {
     }).then((result) => {
       if (result.isConfirmed) {
         // Aquí puedes realizar alguna acción si el usuario hace clic en "Sí"
-        navigation('/mapa-buses')
+        navigation('/map-fullScreen')
       }
     });
   };
@@ -36,7 +37,7 @@ export function Inicio() {
     <div className="container">
       <div className="mapa" style={{ cursor: "pointer" }} onClick={mostrarAlerta}>
         {/*       <MapaDePrueba /> */}
-        <MapaBuses buses={buses} />
+        <MapaBuses buses={buses} tipo="bus" />
       </div>
       <div className="panelInferior">
         <div className="rutas" onClick={() => navigation(`/rutasxemp/${idemp}`)}>
