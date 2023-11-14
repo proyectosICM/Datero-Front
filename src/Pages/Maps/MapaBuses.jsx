@@ -62,8 +62,8 @@ export function MapaBuses({buses, tipo}) {
     const markerElement = document.createElement('div');
     markerElement.className = 'custom-marker';
     markerElement.style.backgroundImage = `url(${tipo === "bus" ? busIcon : paraderoIcon})`;
-    markerElement.style.width = '150px';
-    markerElement.style.height = '150px';
+    markerElement.style.width = "60px";
+    markerElement.style.height = "60px";
 
     // Crear un elemento de título
     const titleElement = document.createElement('div');

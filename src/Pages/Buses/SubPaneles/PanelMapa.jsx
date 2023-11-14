@@ -11,8 +11,7 @@ export function PanelMapa({ idbus, idruta }) {
   useListarElementos(`${busesURL}/${idbus}`, setBus);
   useListarElementos(`${rpXRuta}/${idruta}`, setRuta);
 
-
-
+  //console.log(bus)
   return (
     <div className="panel-mapa">
       {/* <MapaDePrueba /> */}
