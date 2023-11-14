@@ -62,6 +62,6 @@ export const routes = [
   { path: "/login", component: <Login /> },
 
   { path: "/historial-bus/:id", component: <PanelHistorialBus />},
-  { path: "/historial/:dias", component: <Tabla7Dias />}
+  { path: "/historial/:id/:dias", component: <Tabla7Dias />}
 
 ];

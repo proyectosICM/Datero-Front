@@ -6,7 +6,7 @@ import ExcelJS from "exceljs";
 import axios from "axios";
 export function Tabla7Dias() {
     const navigation = useNavigate();
-    const { dias } = useParams();
+    const { dias , id } = useParams();
 
     const [datos, setDatos] = useState([]);
     const [diasSelected, setDiasSelected] = useState();
@@ -107,7 +107,7 @@ export function Tabla7Dias() {
     
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/historial-bus`)}>
+      <Button className="boton-atras" onClick={() => navigation(`/historial-bus/${id}`)}>
         Atras
       </Button>
       <h1>Historial últimos {dias} días</h1>

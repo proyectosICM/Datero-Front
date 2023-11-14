@@ -4,9 +4,6 @@ import { useNavigate } from "react-router-dom";
 export function PanelExtra({idbus}) {
   const navigation = useNavigate();
 
-  const handleHola = () => { 
-    alert("jpña p");
-  }
   return (
     <div className="panel-extra">
       <div style={{ display: "flex", justifyContent: "space-between", width: "100%" }}>
@@ -20,7 +17,7 @@ export function PanelExtra({idbus}) {
 
       <div style={{ width: "100%", cursor: "pointer"}} onClick={() => navigation(`/historial-bus/${idbus}`)}>
         <h5>Ver Historial</h5>
-        <img src={masIcono} alt="ruta-icono " style={{ width: "3rem" }} />
+        <img src={masIcono} alt="ruta-icono"  className="zoom-effect" />
       </div>
     </div>
   );

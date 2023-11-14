@@ -161,3 +161,12 @@
   font-size: x-large;
   font-weight: bold;
 }
+
+.zoom-effect{
+  width: 3em;
+
+}
+.zoom-effect:hover{
+  width: 3.5em;
+
+}

@@ -18,7 +18,7 @@ export function MapaBusxRuta({ bus, ruta }) {
         container: "map",
         center: [bus.longitud, bus.latitud], // Centrar el mapa en la posición del autobús
         zoom: 15,
-      });
+      });   
 
       // Crear un marcador para el autobús con un ícono diferente
       const busMarker = new tt.Marker({ element: createCustomMarker(busIcon) })
