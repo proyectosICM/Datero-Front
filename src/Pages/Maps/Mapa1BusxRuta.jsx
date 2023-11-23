@@ -16,7 +16,7 @@ export function MapaBusxRuta({ bus, ruta }) {
       const map = tt.map({
         key: "h7fg9TqEyAohgMGDrKynpp3vqsXdB9ZF", // Reemplaza con tu clave de API de TomTom
         container: "map",
-        center: [bus.longitud, bus.latitud], // Centrar el mapa en la posición del autobús
+        //center: [bus.longitud, bus.latitud], // Centrar el mapa en la posición del autobús
         zoom: 15,
       });   
 
@@ -28,7 +28,7 @@ export function MapaBusxRuta({ bus, ruta }) {
       // Ajustar el centro y el zoom del mapa para mostrar el marcador del autobús
       const bounds = new tt.LngLatBounds();
       bounds.extend([bus.longitud, bus.latitud]);
-
+ 
       // Agregar marcadores para los paraderos de la ruta (ejemplo, asegúrate de tener las coordenadas de los paraderos)
       ruta.forEach(r => {
         const paraderoMarker = new tt.Marker({ element: createCustomMarker(paraderoIcon) })
@@ -38,7 +38,7 @@ export function MapaBusxRuta({ bus, ruta }) {
       });
 
       // Ajustar el centro y el zoom del mapa para mostrar todos los marcadores
-      map.fitBounds(bounds, { padding: 50 });
+      //map.fitBounds(bounds, { padding: 50 });
 
       // Actualizar las referencias con la instancia del mapa y el marcador del autobús
       mapRef.current = map;

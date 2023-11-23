@@ -32,7 +32,7 @@ export function Inicio() {
       }
     });
   };
-
+ 
   return (
     <div className="container">
       <div className="mapa" style={{ cursor: "pointer" }} onClick={mostrarAlerta}>

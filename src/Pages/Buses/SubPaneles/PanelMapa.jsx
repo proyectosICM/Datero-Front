@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { MapaDePrueba } from "../../../Common/MapaDePrueba";
-import { MapaBusxRuta } from "../../Maps/MapaBusxRuta";
+import { MapaBusxRuta } from "../../Maps/Mapa1BusxRuta";
 import { busesURL, rpXRuta } from "../../../API/apiurls";
 import { useListarElementos } from "../../../Hooks/CRUDHooks";
 
