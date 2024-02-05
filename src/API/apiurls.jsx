@@ -15,7 +15,7 @@ export const busesURL = `${baseURL}/buses`;
 export const busesEmpresa = `${busesURL}/xempresa`;
 export const busesEmpresaEstado = `${busesURL}/xempresaAndEstado`;
 export const busesPosURL = `${baseURL}/buses/pos`;
-
+  
 //Rutas
 export const rutasURL = `${baseURL}/rutas`;
 export const rutasEmpresa = `${rutasURL}/xempresa`;
