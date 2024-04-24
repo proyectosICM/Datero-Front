@@ -25,6 +25,8 @@ import { Tabla7Dias } from "./Pages/Buses/HistorialBus/Tabla7Dias";
 import { MapaFullSceen } from "./Pages/Maps/MapaFullScreen";
 import { MapaBuses } from "./Pages/Maps/MapaBuses";
 import { RutasMapa } from "./Pages/Maps/RutasMapa";
+import { MapaOL } from "./Pages/Maps/mapaOL";
+import { MapaOL2 } from "./Pages/Maps/mapaOL2";
 
 
 export const routes = [
@@ -33,6 +35,8 @@ export const routes = [
   { path: "/mapa-buses", component: <MapaBuses />},
   { path: "/map-fullScreen",  component: <MapaFullSceen />},
   { path: "/rutasMapa/:id", component: <RutasMapa /> },
+  { path: "/mapa-prueba", component: <MapaOL /> },
+  { path: "/mapa-prueba2", component: <MapaOL2/> },
 
   //Pages
   { path: "/", component: <Inicio /> },

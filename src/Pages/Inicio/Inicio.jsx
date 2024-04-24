@@ -4,18 +4,21 @@ import "../../Styles/Inicio.css";
 import rutaicono from "../../Images/rutaIcono.png";
 import administrarIcono from "../../Images/administrarIcono.png";
 import busesIcono from "../../Images/busesIcono.png";
-import { MapaDePrueba } from "../../Common/MapaDePrueba";
+
 import { useNavigate } from "react-router-dom";
 
 import { busesEmpresa } from "../../API/apiurls";
+
 import { useListarElementos } from "../../Hooks/CRUDHooks";
+import { MapaDePrueba } from "../../Common/MapaDePrueba";
 import { MapaBuses } from "../Maps/MapaBuses";
+import { MapaOL } from "../Maps/mapaOL";
 
 export function Inicio() {
   const navigation = useNavigate();
 
   const [buses, setBuses] = useState();
-  const idemp = 19
+  const idemp = 19;
   useListarElementos(`${busesEmpresa}/${idemp}`, setBuses);
 
   const mostrarAlerta = () => {
@@ -28,17 +31,19 @@ export function Inicio() {
     }).then((result) => {
       if (result.isConfirmed) {
         // Aquí puedes realizar alguna acción si el usuario hace clic en "Sí"
-        navigation('/map-fullScreen')
+        navigation("/map-fullScreen");
       }
     });
   };
- 
+
   return (
     <div className="container">
-      <div className="mapa" style={{ cursor: "pointer" }} onClick={mostrarAlerta}>
-        {/*       <MapaDePrueba /> */}
-        <MapaBuses buses={buses} tipo="bus" />
-      </div>
+      {/*  <MapaBuses buses={buses} tipo="bus" /> */}
+      {/*       <div className="mapa" style={{ cursor: "pointer" }} onClick={mostrarAlerta}>
+        <MapaOL />
+      </div>  */}
+
+      <MapaOL />
       <div className="panelInferior">
         <div className="rutas" onClick={() => navigation(`/rutasxemp/${idemp}`)}>
           <img src={rutaicono} alt="ruta-icono " className="iconos" />
