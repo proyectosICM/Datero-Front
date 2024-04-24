@@ -1,80 +1,99 @@
-import React, { useEffect, useState, useRef } from "react";
-import "@tomtom-international/web-sdk-maps/dist/maps.css";
-import tt from "@tomtom-international/web-sdk-maps";
-import busIcon from '../../Images/busesIcono.png';
-import paraderoIcon from '../../Images/paraderoS.png';
+import React, { useEffect, useRef, useCallback, useState } from "react";
+import "ol/ol.css";
+import Map from "ol/Map";
+import View from "ol/View";
+import TileLayer from "ol/layer/Tile";
+import XYZ from "ol/source/XYZ";
+import { fromLonLat, toLonLat } from "ol/proj";
+import { Vector as VectorLayer } from "ol/layer";
+import { Vector as VectorSource } from "ol/source";
+import { Feature } from "ol";
+import { Point } from "ol/geom";
+import Icon from "ol/style/Icon";
+import Style from "ol/style/Style";
+import { generarEstiloMarcador, marcadorItem } from "./MarcadoresLayer";
 
+const position = [-76.95769789314294, -12.036776926858456];
+const yo = [-76.95769789314294, -12.036776926858456];
 
-export function MapaBuses({buses, tipo}) {
-
-
-  // Referencia para almacenar la instancia del mapa
+export function MapaBuses() {
   const mapRef = useRef(null);
+  const [showMap, setShowMap] = useState(false);
+  const [map, setMap] = useState(null);
 
-  // Inicializar el mapa solo una vez
-  useEffect(() => {
-    if (!mapRef.current && buses) {
-      // Filtrar los buses que tienen coordenadas válidas
-
-      let busesConCoordenadas;
-
-      if (tipo === "bus") {
-        busesConCoordenadas = buses.filter(bus => bus.latitud && bus.longitud);
-      } else if (tipo === "paradero") {
-        busesConCoordenadas = buses.filter(bus => bus.paraderosModel.latitud && bus.paraderosModel.longitud);
-      }
-      console.log(busesConCoordenadas)
-
-      // Inicializar el mapa con tu clave de API
-      const map = tt.map({
-        key: "h7fg9TqEyAohgMGDrKynpp3vqsXdB9ZF", // Reemplaza con tu clave de API de TomTom
-        container: "map",
-        center: [-76.954401, -12.025722], // Puedes ajustar esto según tus necesidades
+  const createMap = useCallback(() => {
+    const initialMap = new Map({
+      target: mapRef.current,
+      layers: [
+        new TileLayer({
+          source: new XYZ({
+            url: "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
+            attributions: "© Google Maps 2",
+          }),
+        }),
+      ],
+      view: new View({
+        center: fromLonLat(position),
         zoom: 15,
-      });
+      }),
+    });
 
-      // Crear marcadores para cada bus con icono personalizado y título
-      busesConCoordenadas.forEach(bus => {
-        const marker = new tt.Marker({
-          element: createCustomMarker(tipo === 'bus' ? bus.placa : bus.nombre), // Llama a la función para crear un icono personalizado
-        }).setLngLat(tipo === 'bus' ?  [bus.longitud, bus.latitud] : [bus.paraderosModel.longitud, bus.paraderosModel.latitud] ).addTo(map);
-      });
+    const markerLayer = new VectorLayer({
+      source: new VectorSource(),
+    });
+    initialMap.addLayer(markerLayer);
 
-      // Ajustar el centro y el zoom del mapa para mostrar todos los marcadores
-      const bounds = new tt.LngLatBounds();
-      busesConCoordenadas.forEach(bus => {
-        if (tipo === 'bus') {
-          bounds.extend([bus.longitud, bus.latitud]);
-        } else {
-          bounds.extend([bus.paraderosModel.longitud, bus.paraderosModel.latitud]);
-        }
-      });
-      map.fitBounds(bounds, { padding: 50 });
+    const markerFeature1 = new Feature({
+      geometry: new Point(fromLonLat(yo)),
+    });
+    markerLayer.getSource().addFeature(markerFeature1);
 
-      // Actualizar la referencia con la instancia del mapa
-      mapRef.current = map;
+    markerFeature1.setStyle(generarEstiloMarcador);
+
+    setMap(initialMap);
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMap(true);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (showMap) {
+      createMap();
     }
-  
-  }, [buses]);
+  }, [showMap, createMap]);
 
-  // Función para crear un icono personalizado (imagen de autobús) con título
-  const createCustomMarker = (title) => {
-    const markerElement = document.createElement('div');
-    markerElement.className = 'custom-marker';
-    markerElement.style.backgroundImage = `url(${tipo === "bus" ? busIcon : paraderoIcon})`;
-    markerElement.style.width = "60px";
-    markerElement.style.height = "60px";
+  useEffect(() => {
+    if (showMap && map) {
+      const markerSource = map.getLayers().item(1).getSource(); // Obtener la fuente de marcadores
+      const markerFeatures = markerSource.getFeatures(); // Obtener todas las características de los marcadores
 
-    // Crear un elemento de título
-    const titleElement = document.createElement('div');
-    titleElement.className = 'custom-marker-title';
-    titleElement.textContent = title;
-    markerElement.appendChild(titleElement);
+      // Calcular la posición media de los marcadores
+      const center = markerFeatures.reduce(
+        (acc, feature) => {
+          const geometry = feature.getGeometry();
+          const coordinates = geometry.getCoordinates();
+          const lonLat = toLonLat(coordinates);
+          acc[0] += lonLat[0];
+          acc[1] += lonLat[1];
+          return acc;
+        },
+        [0, 0]
+      );
+      center[0] /= markerFeatures.length;
+      center[1] /= markerFeatures.length;
 
-    return markerElement;
-  };
+      // Establecer la vista del mapa para que esté centrada en la posición media de los marcadores
+      map.getView().setCenter(fromLonLat(center));
 
-  return (
-    <div id="map"></div>
-  );
+      // Ajustar el zoom para mostrar todos los marcadores
+      map.getView().fit(markerSource.getExtent(), { padding: [150, 100, 100, 50] });
+    }
+  }, [showMap, map]);
+
+  return <>{showMap && <div ref={mapRef} className="mapa" />}</>;
 }

@@ -3,6 +3,7 @@ import { MapaDePrueba } from "../../../Common/MapaDePrueba";
 import { MapaBusxRuta } from "../../Maps/Mapa1BusxRuta";
 import { busesURL, rpXRuta } from "../../../API/apiurls";
 import { useListarElementos } from "../../../Hooks/CRUDHooks";
+import { MapaBuses } from "../../Maps/MapaBuses";
 
 export function PanelMapa({ idbus, idruta }) {
   const [bus, setBus] = useState();
@@ -15,7 +16,8 @@ export function PanelMapa({ idbus, idruta }) {
   return (
     <div className="panel-mapa">
       {/* <MapaDePrueba /> */}
-      <MapaBusxRuta bus={bus} ruta={ruta} />
+      {/*       <MapaBusxRuta bus={bus} ruta={ruta} /> */}
+      <MapaBuses />
     </div>
   );
 }

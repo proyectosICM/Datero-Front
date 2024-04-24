@@ -13,6 +13,7 @@ import { useListarElementos } from "../../Hooks/CRUDHooks";
 import { MapaDePrueba } from "../../Common/MapaDePrueba";
 import { MapaBuses } from "../Maps/MapaBuses";
 import { MapaOL } from "../Maps/mapaOL";
+import { MapaBase } from "../Maps/MapaBase";
 
 export function Inicio() {
   const navigation = useNavigate();
@@ -20,6 +21,8 @@ export function Inicio() {
   const [buses, setBuses] = useState();
   const idemp = 19;
   useListarElementos(`${busesEmpresa}/${idemp}`, setBuses);
+
+  // console.log(`${busesEmpresa}/${idemp}`);
 
   const mostrarAlerta = () => {
     Swal.fire({
@@ -42,8 +45,11 @@ export function Inicio() {
       {/*       <div className="mapa" style={{ cursor: "pointer" }} onClick={mostrarAlerta}>
         <MapaOL />
       </div>  */}
+      <div style={{ width: "100%", height: "400px", cursor: "pointer" }} onClick={mostrarAlerta}>
+        {/* <MapaOL /> */}
+        <MapaBase buses={buses} />
+      </div>
 
-      <MapaOL />
       <div className="panelInferior">
         <div className="rutas" onClick={() => navigation(`/rutasxemp/${idemp}`)}>
           <img src={rutaicono} alt="ruta-icono " className="iconos" />

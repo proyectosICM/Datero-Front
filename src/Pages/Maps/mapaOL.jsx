@@ -11,6 +11,7 @@ import { Feature } from "ol";
 import { Point } from "ol/geom";
 import Icon from "ol/style/Icon";
 import Style from "ol/style/Style";
+import { generarEstiloMarcador, marcadorItem } from "./MarcadoresLayer";
 
 const position = [-76.95769789314294, -12.036776926858456];
 const yo = [-76.95769789314294, -12.036776926858456];
@@ -52,25 +53,29 @@ export function MapaOL() {
       geometry: new Point(fromLonLat(vec)),
     });
     markerLayer.getSource().addFeature(markerFeature2);
-
-    const vecinoStyle = new Style({
+/*
+    const busesStyle = new Style({
       image: new Icon({
         src: require("../../Images/busesIcono.png"),
         anchor: [0.5, 1],
         scale: 0.09,
       }),
     });
+*/
+    markerFeature1.setStyle(generarEstiloMarcador);
+    markerFeature2.setStyle(generarEstiloMarcador);
 
-    markerFeature1.setStyle(vecinoStyle);
-    markerFeature2.setStyle(vecinoStyle);
 
+    const markerFeature3 = marcadorItem([-75.9577902, -12.0371043]);
+    markerLayer.getSource().addFeature(markerFeature3);
+    markerFeature3.setStyle(generarEstiloMarcador);
     setMap(initialMap);
   }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowMap(true);
-    }, 500);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -102,7 +107,7 @@ export function MapaOL() {
       map.getView().setCenter(fromLonLat(center));
 
       // Ajustar el zoom para mostrar todos los marcadores
-      map.getView().fit(markerSource.getExtent(), { padding: [150, 100, 100, 100] });
+      map.getView().fit(markerSource.getExtent(), { padding: [150, 100, 100, 50] });
     }
   }, [showMap, map]);
 

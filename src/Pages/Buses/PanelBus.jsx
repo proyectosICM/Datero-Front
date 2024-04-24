@@ -23,7 +23,7 @@ export function PanelBus() {
   return (
     <div className="container-crud">
       <Button className="boton-atras" onClick={() => navigation(`/buses/19`)}>
-        Atras
+        Atras 
       </Button>
       <PanelMapa idbus={idbus} idruta = {idruta} />
       <PanelBoletos idbus={idbus} />
