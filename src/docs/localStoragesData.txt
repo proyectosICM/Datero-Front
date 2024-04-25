@@ -1,0 +1,5 @@
+empresaId -> Nombre de la empresa
+rutaId -> Id de ruta seleccionada
+busId -> Id de bus seleccionado
+backURL -> url para el boton de retrocesp0
+diasHistorial -> dias selecionados para ver el historial

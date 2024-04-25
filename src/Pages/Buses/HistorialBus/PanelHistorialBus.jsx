@@ -9,26 +9,30 @@ import mesIcono from "../../../Images/31dias.png";
 import { busesURL } from "../../../API/apiurls";
 export function PanelHistorialBus() {
   const navigation = useNavigate();
-  const { id } = useParams();
-  const [datos, setDatos] = useState([]);
 
-  useListarElementos("http://localhost:8080/api/conteoB/last-7-days-ordered/1", setDatos);
+  // const [datos, setDatos] = useState([]);
 
-  const [bus, setBus] = useState();
-  useListarElementos(`${busesURL}/${id}`, setBus);
+  // useListarElementos("http://localhost:8080/api/conteoB/last-7-days-ordered/1", setDatos);
+
+  //const [bus, setBus] = useState();
+  //useListarElementos(`${busesURL}/${busId}`, setBus);
+
+  const handleHistorialDetalle = (dias) => {
+    localStorage.setItem("diasHistorial", dias);
+    navigation(`/historial-detalle`)
+  }
 
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/panel-bus/${id}/${bus.rutasModel.id}`)}>
+      <Button className="boton-atras" onClick={() => navigation(`/panel-bus`)}>
         Atras
       </Button>
 
       <Card style={{ margin: "2%", width: "100%" }}>
         <h1>Placa: ABC-123</h1>
-        <h1></h1>
       </Card>
 
-      <Card className="crud-card cursor-pointer" onClick={() => navigation(`/historial/${id}/${7}`)}>
+      <Card className="crud-card cursor-pointer" onClick={() => handleHistorialDetalle(7)}>
         <div class="contenedor-card-bus">
           <div class="first-content-bus">
             <span style={{ fontSize: "20px" }}>Historial de los ultimos 7 dias </span>
@@ -41,7 +45,7 @@ export function PanelHistorialBus() {
         </div>
       </Card>
 
-      <Card className="crud-card cursor-pointer" onClick={() => navigation(`/historial/${id}/${31}`)}>
+      <Card className="crud-card cursor-pointer" onClick={() => handleHistorialDetalle(31)}>
         <div class="contenedor-card-bus">
           <div class="first-content-bus">
             <span style={{ fontSize: "20px" }}>Historial de los ultimos 31 dias </span>

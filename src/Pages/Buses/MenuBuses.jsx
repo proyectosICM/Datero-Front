@@ -7,10 +7,12 @@ import { Button } from "react-bootstrap";
 import "./BusesStyles.css";
 
 export function MenuBuses() {
-  const navigation = useNavigate();
-  const { id } = useParams();
   const [datos, setDatos] = useState();
-  useListarElementos(`${busesEmpresaEstado}/${id}/1`, setDatos);
+  const navigation = useNavigate();
+  const empresaId = localStorage.getItem("empresaId");
+
+  useListarElementos(`${busesEmpresaEstado}/${empresaId}/1`, setDatos);
+  
   return (
     <div className="container-crud">
       <div className="card-container">
@@ -19,7 +21,6 @@ export function MenuBuses() {
         </Button>
 
         {datos && datos.map((dato) => <CardBuses key={dato.id} dato={dato} />)}
-
       </div>
     </div>
   );

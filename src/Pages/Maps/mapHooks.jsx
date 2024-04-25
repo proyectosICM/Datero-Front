@@ -7,7 +7,7 @@ import Map from "ol/Map";
 import { Point } from "ol/geom";
 import VectorLayer from "ol/layer/Vector";
 import VectorSource from "ol/source/Vector";
-import { Icon, Style } from "ol/style";
+import { Fill, Icon, Style, Text  } from "ol/style";
 export const useShowMapAfterDelay = (delay) => {
   const [showMap, setShowMap] = useState(false);
 
@@ -47,10 +47,20 @@ export const useCreateMap = (mapRef, position, setMap) => {
   return createMap;
 };
 
-export const addMarker = (map, position) => {
+export const addMarker = (map, position, image, title) => {
   const marker = new Feature({
     geometry: new Point(fromLonLat(position)),
   });
+
+  let markerImageSrc;
+  if (image === 'busesIcono') {
+    markerImageSrc = require("../../Images/busesIcono.png");
+  } else if (image === 'paradero') {
+    markerImageSrc = require("../../Images/paradero.png");
+  } else {
+    // En caso de que la propiedad image no coincida con ninguna de las opciones, usa un valor predeterminado
+    markerImageSrc = require("../../Images/masIcono.png");
+  }
 
   map.addLayer(
     new VectorLayer({
@@ -59,13 +69,19 @@ export const addMarker = (map, position) => {
       }),
       style: new Style({
         image: new Icon({
-          src: require("../../Images/busesIcono.png"),
+          src: markerImageSrc,
           anchor: [0.5, 1],
           scale: 0.09,
+        }),
+        text: new Text({
+          text: title, // Título del marcador
+          offsetY: -80, // Desplazamiento vertical del texto para que aparezca sobre el marcador
+          textAlign: "center", // Alineación del texto
+          fill: new Fill({ color: '#000' }), // Color del texto
+          font: '15px Arial, sans-serif', // Fuente y tamaño del texto
+          backgroundFill: new Fill({ color: 'rgba(255,255,255,0.5)' })
         }),
       }),
     })
   );
 };
-
-

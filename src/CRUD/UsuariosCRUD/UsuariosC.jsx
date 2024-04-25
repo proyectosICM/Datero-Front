@@ -5,13 +5,13 @@ import { BotonesCRUD } from "../../Common/BotonesCRUD";
 import { usuariosEmpresa, usuariosEmpresaEstado } from "../../API/apiurls";
 
 export function UsuariosC() {
-  const { id } = useParams();
+  const empresaId = localStorage.getItem("empresaId");
   const [abrir, setAbrir] = useState(false);
   const [tablaSeleccionada, setTablaSeleccionada] = useState("Todos");
-
-  const urlT = `${usuariosEmpresa}/${id}`;
-  const urlH = `${usuariosEmpresaEstado}/${id}/1`;
-  const urlD = `${usuariosEmpresaEstado}/${id}/0`;
+  const backURL = localStorage.getItem("backURL");
+  const urlT = `${usuariosEmpresa}/${empresaId}`;
+  const urlH = `${usuariosEmpresaEstado}/${empresaId}/1`;
+  const urlD = `${usuariosEmpresaEstado}/${empresaId}/0`;
 
   const handleMostrarTabla = (tabla) => {
     setTablaSeleccionada(tabla);
@@ -33,16 +33,16 @@ export function UsuariosC() {
  
   return (
     <div className="container-crud">
-      <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder="/CRUD" />
+      <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder={backURL} />
 
       {tablaSeleccionada === "Habilitados" && (
-        <UsuariosTabla il={id} url={urlH} abrir={abrir} cerrar={handleCerrarModal} />
+        <UsuariosTabla il={empresaId} url={urlH} abrir={abrir} cerrar={handleCerrarModal} />
       )}
       {tablaSeleccionada === "Deshabilitados" && (
-        <UsuariosTabla il={id} url={urlD} abrir={abrir} cerrar={handleCerrarModal} />
+        <UsuariosTabla il={empresaId} url={urlD} abrir={abrir} cerrar={handleCerrarModal} />
       )}
       {tablaSeleccionada === "Todos" && (
-        <UsuariosTabla il={id} url={urlT} abrir={abrir} cerrar={handleCerrarModal} />
+        <UsuariosTabla il={empresaId} url={urlT} abrir={abrir} cerrar={handleCerrarModal} />
       )}
     </div>
   );

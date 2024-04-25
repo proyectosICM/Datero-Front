@@ -15,9 +15,9 @@ export function PanelExtra({idbus}) {
         <p>32km/h</p>
       </div>
 
-      <div style={{ width: "100%", cursor: "pointer"}} onClick={() => navigation(`/historial-bus/${idbus}`)}>
+      <div style={{ width: "100%", cursor: "pointer"}} onClick={() => navigation(`/historial-bus`)}>
         <h5>Ver Historial</h5>
-        <img src={masIcono} alt="ruta-icono"  className="zoom-effect" />
+        <img src={masIcono} alt="ruta-icono"  className="zoom-effect" /> 
       </div>
     </div>
   );

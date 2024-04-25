@@ -6,18 +6,14 @@ import { BsPersonVcard } from "react-icons/bs";
 import { TbBusStop } from "react-icons/tb";
 import { SiGooglemaps } from "react-icons/si";
 
-
 export function MenuAdministrador() {
   const navigation = useNavigate();
-  const idemp = 19;
-  const tablas = ["Buses", "Trabajadores", "Rutas",  "Paraderos"];
+
+  
+  localStorage.setItem("backURL", "/menu-administrador");
+  const tablas = ["Buses", "Trabajadores", "Rutas", "Paraderos"];
   const iconos = [BsFillBusFrontFill, BsPersonVcard, TbBusStop, SiGooglemaps];
-  const rutas = [
-    `/busesxemp/${idemp}`,
-    `/usuariosxemp/${idemp}`,
-    `/rutasxemp/${idemp}`,
-    `/paraderosCRUD`
-  ];
+  const rutas = [`/buses-CRUD`, `/trabajadores-CRUD`, `/rutas`, `/paraderos-CRUD`];
 
   return (
     <div className="container-crud">

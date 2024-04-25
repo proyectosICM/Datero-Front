@@ -10,7 +10,7 @@ export function ParaderosC(){
     const urlT = paraderosURL;
     const urlH = `${paraderosEstado}/1`;
     const urlD = `${paraderosEstado}/0`;
-
+    const backURL = localStorage.getItem("backURL");
     const handleMostrarTabla = (tabla) =>{
         setTablaSeleccionada(tabla);
     }
@@ -32,7 +32,7 @@ export function ParaderosC(){
     return(
         <div className="container-crud">
             <div className="set-botones">
-                <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder="/CRUD" />
+                <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder={backURL} />
             </div>
 
             {tablaSeleccionada === "Habilitados" && (

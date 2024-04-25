@@ -7,6 +7,8 @@ import axios from "axios";
 export function Tabla7Dias() {
     const navigation = useNavigate();
     const { dias , id } = useParams();
+    const busId = localStorage.getItem("busId");
+    const diasHistorial = localStorage.getItem("diasHistorial");
 
     const [datos, setDatos] = useState([]);
     const [diasSelected, setDiasSelected] = useState();
@@ -19,7 +21,7 @@ export function Tabla7Dias() {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          if (dias === "7") {
+          if (diasHistorial === "7") {
             setDiasSelected(semanaurl);
           } else if (dias === "31") {
             setDiasSelected(mesurl);
@@ -41,7 +43,7 @@ export function Tabla7Dias() {
       };
   
       fetchData();
-    }, [dias, diasSelected]);
+    }, [diasHistorial, diasSelected]);
 
   
     // Función para agrupar datos por día
@@ -107,10 +109,10 @@ export function Tabla7Dias() {
     
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/historial-bus/${id}`)}>
+      <Button className="boton-atras" onClick={() => navigation(`/historial-bus`)}>
         Atras
       </Button>
-      <h1>Historial últimos {dias} días</h1>
+      <h1>Historial últimos {diasHistorial} días</h1>
       <Table striped bordered hover>
         <thead>
           <tr></tr>

@@ -8,7 +8,7 @@ import { fromLonLat, toLonLat } from "ol/proj";
 const position = [-76.95769789314294, -12.036776926858456];
 const yo = [-76.95769789314294, -12.036776926858456];
 
-export function MapaBase({ buses }) {
+export function MapaBase({ buses, rutas }) {
   const [map, setMap] = useState(null);
   // Referencia al elemento del mapa
   const mapRef = useRef(null);
@@ -25,22 +25,31 @@ export function MapaBase({ buses }) {
     }
   }, [showMap, createMap]);
 
-  useEffect(() => {
-    if (map) {
-      addMarker(map, yo);
-    }
-  }, [map]);
 
   useEffect(() => {
     if (map && buses) {
-      buses.forEach(bus => {
-        const busPosition = [bus.longitud, bus.latitud];
-        addMarker(map, busPosition);
-      });
+      if (Array.isArray(buses)) {
+        buses.forEach((bus) => {
+          const busPosition = [bus.longitud, bus.latitud];
+          addMarker(map, busPosition, "busesIcono",bus.placa);
+        });
+      } else {
+        const busPosition = [buses.longitud, buses.latitud];
+        addMarker(map, busPosition, "busesIcono",buses.placa);
+      }
     }
   }, [map, buses]);
 
+  useEffect(() => {
+    if (map && rutas) {
+      rutas.forEach((ruta) => {
+        const busPosition = [ruta.paraderosModel.longitud, ruta.paraderosModel.latitud];
+        addMarker(map, busPosition, "paradero",ruta.paraderosModel.nombre);
+      });
+    }
+  }, [map, rutas]);
 
+  
 
   return <>{showMap && <div ref={mapRef} className="mapa" />}</>;
 }

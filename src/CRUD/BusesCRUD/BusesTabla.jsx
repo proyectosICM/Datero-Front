@@ -6,24 +6,24 @@ import { busesURL } from "../../API/apiurls";
 import { agregarElemento, editarElemento, useListarElementos, cambiarEstadoElemento } from "../../Hooks/CRUDHooks.jsx";
 import { BotonesDeGestion } from "../../Common/BotonesDeGestion";
 
-export function BusesTabla({ il, url, abrir, cerrar }) {
+export function BusesTabla({ url, abrir, cerrar }) {
   const [datos, setDatos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
-
+  const empresaId = localStorage.getItem("empresaId");
   useListarElementos(url, setDatos);
 
   const agregarBus = (bus) => {
     console.log(bus);
     const requestData = {
-      modelo: bus.modelo,
+      modelo: bus.modelo, 
       placa: bus.placa,
       estado: bus.estado,
       usuariosModel: {
         id: bus.trabajadoresModel,
       },
       empresasModel: {
-        id: il,
+        id: empresaId,
       },
       rutasModel: {
         id: bus.rutasModel,
@@ -42,14 +42,14 @@ export function BusesTabla({ il, url, abrir, cerrar }) {
         id: bus.usuariosModel,
       },
       empresasModel: {
-        id: il,
+        id: empresaId,
       },
       rutasModel: {
         id: bus.rutasModel,
       },
     };
     const apiurledit = `${busesURL}/${bus.id}`;
-    console.log(requestData)
+    console.log(requestData);
     editarElemento(apiurledit, requestData, closeModal);
   };
 
@@ -96,13 +96,13 @@ export function BusesTabla({ il, url, abrir, cerrar }) {
               <td>{dato.empresasModel.nombre}</td>
               <td>{dato.estado ? "Habilitado" : "Deshabilitado"}</td>
               <td>
-                <BotonesDeGestion ide={`id`} estado={`estado`} dato={dato} edit={edit} cambiarEstado={cambiarEstado}/>
+                <BotonesDeGestion ide={`id`} estado={`estado`} dato={dato} edit={edit} cambiarEstado={cambiarEstado} />
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
-      <BusesModal emp={il} show={showModal || abrir} close={closeModal} agregar={agregarBus} datosaeditar={datosEdit} editar={editarBus} />
+      <BusesModal emp={empresaId} show={showModal || abrir} close={closeModal} agregar={agregarBus} datosaeditar={datosEdit} editar={editarBus} />
     </>
   );
 }

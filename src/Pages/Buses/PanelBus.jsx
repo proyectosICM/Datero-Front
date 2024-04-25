@@ -13,22 +13,24 @@ import { busesURL } from "../../API/apiurls";
 
 export function PanelBus() {
   const navigation = useNavigate();
-  const { idbus, idruta } = useParams();
 
-  const [downloadStatus, setDownloadStatus] = useState(null);
+  const busId = localStorage.getItem("busId");
+  const rutaId = localStorage.getItem("rutaId");
+  // const [downloadStatus, setDownloadStatus] = useState(null);
 
   const [bus, setBus] = useState();
-  useListarElementos(`${busesURL}/${idbus}`, setBus);
-  // console.log(bus);
+
+  useListarElementos(`${busesURL}/${busId}`, setBus);
+
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/buses/19`)}>
-        Atras 
+      <Button className="boton-atras" onClick={() => navigation(`/buses`)}>
+        Atras
       </Button>
-      <PanelMapa idbus={idbus} idruta = {idruta} />
-      <PanelBoletos idbus={idbus} />
-      <PanelRegistros idbus={idbus} />
-      <PanelExtra idbus={idbus} />
+      <PanelMapa idbus={busId} idruta={rutaId} />
+      <PanelBoletos idbus={busId} />
+      <PanelRegistros idbus={busId} />
+      <PanelExtra idbus={busId} />
       {/*   <DescargarExcel /> */}
     </div>
   );

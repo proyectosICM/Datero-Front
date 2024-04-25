@@ -8,22 +8,22 @@ import { rpURL, rpXRuta } from "../../API/apiurls";
 import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
 
 export function ParaderoXRutaTabla() {
-  const idemp = 19;
   const navigation = useNavigate();
   const [datos, setDatos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
 
-  const { ruta } = useParams();
 
-  useListarElementos(`${rpXRuta}/${ruta}`, setDatos);
+  const rutaId = localStorage.getItem("rutaId");
+
+  useListarElementos(`${rpXRuta}/${rutaId}`, setDatos);
 
   const agregarParaderoXRuta = (pr) => {
     console.log(pr);
     const requestData = {
       orden: 1,
       rutasModel: {
-        id: ruta,
+        id: rutaId,
       },
       paraderosModel: {
         id: pr.paraderosModel,
@@ -37,7 +37,7 @@ export function ParaderoXRutaTabla() {
     const requestData = {
       orden: 1,
       rutasModel: {
-        id: ruta,
+        id: rutaId,
       },
       paraderosModel: {
         id: pr.paraderosModel,
@@ -64,9 +64,14 @@ export function ParaderoXRutaTabla() {
     setShowModal(false);
   };
 
+  const backButton = () => {
+    navigation(`/rutasMapa/${rutaId}`);
+    localStorage.setItem("backURL", `/paraderoxruta/${rutaId}` )
+  }
+
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/rutasxemp/${idemp}`)}> Atras</Button>
+      <Button className="boton-atras" onClick={() => navigation(`/rutas`)}> Atras</Button>
       <div>
         <h1>RUTA {datos.length ? datos[0].rutasModel.nombre : "Cargando datos"}</h1>
         <h2>
@@ -77,7 +82,7 @@ export function ParaderoXRutaTabla() {
         <Button variant="success" onClick={openModal}>
           Crear
         </Button>
-        <Button variant="success">Ver el mapa</Button>
+        <Button variant="success" onClick={() => backButton() }>Ver el mapa</Button>
       </div>
 
       <Table striped bordered hover>

@@ -6,8 +6,14 @@ import './BusesStyles.css'
  
 export function CardBuses({ dato }) {
   const navigation = useNavigate();
+
+  const handleRedirect = () => {
+    localStorage.setItem("busId", dato.id);
+    localStorage.setItem("rutaId", dato.rutasModel.id);
+    navigation(`/panel-bus`);
+  }
   return (
-    <Card className="crud-card cursor-pointer" onClick={() => navigation(`/panel-bus/${dato.id}/${dato.rutasModel.id}`)}>
+    <Card className="crud-card cursor-pointer" onClick={() => handleRedirect()}>
       <div class="contenedor-card-bus" >
         <div class="first-content-bus" >
           <span style={{ fontSize: "20px" }}>Placa: {dato.placa}</span>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { ParaderosModal } from "./ParaderosModal";
 import { SiGooglemaps } from "react-icons/si";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BotonesDeGestion } from "../../Common/BotonesDeGestion";
 import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "./../../Hooks/CRUDHooks";
 import { paraderosURL } from "../../API/apiurls";
@@ -11,7 +11,7 @@ export function ParaderosTabla({ url, abrir, cerrar }) {
   const [datos, setDatos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
-
+  const navigation = useNavigate();
   useListarElementos(url, setDatos);
 
   const agregarDistrito = (paradero) => {
@@ -57,6 +57,13 @@ export function ParaderosTabla({ url, abrir, cerrar }) {
     setDatosEdit(null);
   };
 
+  const handleVerEnMapa = (dato) => {
+    localStorage.setItem("paraderoNombre", dato.nombre);
+    localStorage.setItem("longitud", dato.longitud);
+    localStorage.setItem("latitud", dato.latitud);
+    navigation("/paradero-en-mapa");
+  };
+
   return (
     <>
       <Table striped bordered hover>
@@ -81,18 +88,10 @@ export function ParaderosTabla({ url, abrir, cerrar }) {
               </td>
               <td>{dato.estado ? "Habilitado" : "Deshabilitado"}</td>
               <td>
-                <BotonesDeGestion
-                  ide={`id`}
-                  estado={`estado`}
-                  dato={dato}
-                  edit={edit}
-                  cambiarEstado={cambiarEstado}
-                />
-                <Button variant="info">
-                  <Link to={`/paraderoxmap/${dato.nombre}/${dato.longitud}/${dato.latitud}`}>
-                    <SiGooglemaps />
-                    Ver en el mapa
-                  </Link>
+                <BotonesDeGestion ide={`id`} estado={`estado`} dato={dato} edit={edit} cambiarEstado={cambiarEstado} />
+                <Button variant="info" onClick={() => handleVerEnMapa(dato)}>
+                  <SiGooglemaps />
+                  Ver en el mapa
                 </Button>
               </td>
             </tr>
