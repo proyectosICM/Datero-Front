@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { ParaderosTabla } from "./ParaderosTabla";
 import { BotonesCRUD } from "../../Common/BotonesCRUD";
-import { paraderosEstado, paraderosURL } from "../../API/apiurls";
+import { paraderosEstado, paraderosEstadoP, paraderosPURL, paraderosURL } from "../../API/apiurls";
 
 export function ParaderosC(){
 
     const [abrir, setAbrir] = useState()
     const [tablaSeleccionada, setTablaSeleccionada] = useState("Habilitados");
-    const urlT = paraderosURL;
-    const urlH = `${paraderosEstado}/1`;
-    const urlD = `${paraderosEstado}/0`;
+    const urlT = paraderosPURL;
+    const urlH = `${paraderosEstadoP}/1`;
+    const urlD = `${paraderosEstadoP}/0`;
     const backURL = localStorage.getItem("backURL");
     const handleMostrarTabla = (tabla) =>{
         setTablaSeleccionada(tabla);

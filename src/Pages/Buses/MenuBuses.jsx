@@ -1,18 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { CardBuses } from "./CardBuses";
-import { busesEmpresaEstado } from "../../API/apiurls";
-import { useListarElementos } from "../../Hooks/CRUDHooks";
+import { busesEmpresaEstado, busesEmpresaEstadoP } from "../../API/apiurls";
+import { ListPaginatedData, useFetchData, useListarElementos, useListarElementosPaginados } from "../../Hooks/CRUDHooks";
 import { Button } from "react-bootstrap";
 import "./BusesStyles.css";
+import { PaginacionUtils } from "../../Hooks/paginationUtils";
 
 export function MenuBuses() {
-  const [datos, setDatos] = useState();
+  const [pageNumber, setPageNumber] = useState(0);
   const navigation = useNavigate();
   const empresaId = localStorage.getItem("empresaId");
 
-  useListarElementos(`${busesEmpresaEstado}/${empresaId}/1`, setDatos);
-  
+  const { datos, totalPages, currentPage, setCurrentPage, fetchData } = useFetchData(
+    `${busesEmpresaEstadoP}/${empresaId}/1`,
+    pageNumber
+  );
+
+  useEffect(() => {
+    fetchData(pageNumber);
+    console.log("si")
+  }, []);
+
   return (
     <div className="container-crud">
       <div className="card-container">
@@ -21,6 +30,7 @@ export function MenuBuses() {
         </Button>
 
         {datos && datos.map((dato) => <CardBuses key={dato.id} dato={dato} />)}
+        <PaginacionUtils setPageNumber={setPageNumber} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
       </div>
     </div>
   );

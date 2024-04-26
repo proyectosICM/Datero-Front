@@ -14,11 +14,20 @@ export function RutasMapa({ dat }) {
 
   useListarElementos(`${rpXRuta}/${rutaId}`, setDatos);
 
-  const backURL = localStorage.getItem("backURL");
+  const handleBack = () => {
+    const backURL = localStorage.getItem("backURL");
+    navigation(backURL);
+    localStorage.getItem("backURL");
+    if (backURL == "/ruta") {
+      localStorage.setItem("backURL", "/");
+    } else if (backURL == "/paraderos-de-ruta") {
+      localStorage.setItem("backURL", "/ruta");
+    }
+  };
 
   return (
     <>
-      <Button onClick={() => navigation(`${backURL}`)}>Atras</Button>
+      <Button onClick={() => handleBack()}>Atras</Button>
       <h1>Mapa 1 </h1>
 
       <div style={{ width: "100%", height: "600px", cursor: "pointer" }}>

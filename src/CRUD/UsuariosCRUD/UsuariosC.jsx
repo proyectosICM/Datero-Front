@@ -8,6 +8,7 @@ export function UsuariosC() {
   const empresaId = localStorage.getItem("empresaId");
   const [abrir, setAbrir] = useState(false);
   const [tablaSeleccionada, setTablaSeleccionada] = useState("Todos");
+
   const backURL = localStorage.getItem("backURL");
   const urlT = `${usuariosEmpresa}/${empresaId}`;
   const urlH = `${usuariosEmpresaEstado}/${empresaId}/1`;
@@ -23,27 +24,21 @@ export function UsuariosC() {
     } else {
       setAbrir(false);
     }
-  }
+  };
 
   const handleCerrarModal = () => {
     if (abrir) {
       setAbrir(false);
     }
-  }
- 
+  };
+
   return (
     <div className="container-crud">
       <BotonesCRUD activador={handleMostrarTabla} btnTabla={tablaSeleccionada} abrir={handleAbrirModal} retroceder={backURL} />
 
-      {tablaSeleccionada === "Habilitados" && (
-        <UsuariosTabla il={empresaId} url={urlH} abrir={abrir} cerrar={handleCerrarModal} />
-      )}
-      {tablaSeleccionada === "Deshabilitados" && (
-        <UsuariosTabla il={empresaId} url={urlD} abrir={abrir} cerrar={handleCerrarModal} />
-      )}
-      {tablaSeleccionada === "Todos" && (
-        <UsuariosTabla il={empresaId} url={urlT} abrir={abrir} cerrar={handleCerrarModal} />
-      )}
+      {tablaSeleccionada === "Habilitados" && <UsuariosTabla url={urlH} abrir={abrir} cerrar={handleCerrarModal} />}
+      {tablaSeleccionada === "Deshabilitados" && <UsuariosTabla url={urlD} abrir={abrir} cerrar={handleCerrarModal} />}
+      {tablaSeleccionada === "Todos" && <UsuariosTabla url={urlT} abrir={abrir} cerrar={handleCerrarModal} />}
     </div>
   );
 }

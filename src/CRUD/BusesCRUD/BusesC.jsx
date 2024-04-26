@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { BusesTabla } from "./BusesTabla";
 
 import { BotonesCRUD } from "../../Common/BotonesCRUD";
-import { busesEmpresa, busesEmpresaEstado } from "./../../API/apiurls";
+import { busesEmpresa, busesEmpresaEstado, busesEmpresaEstadoP, busesEmpresaP } from "./../../API/apiurls";
 
 export function BusesC() {
   const empresaId = localStorage.getItem("empresaId");
@@ -12,9 +12,9 @@ export function BusesC() {
   const [abrir, setAbrir] = useState(false);
   const [tablaSeleccionada, setTablaSeleccionada] = useState("Todos");
 
-  const urlT = `${busesEmpresa}/${empresaId}`;
-  const urlH = `${busesEmpresaEstado}/${empresaId}/1`;
-  const urlD = `${busesEmpresaEstado}/${empresaId}/0`;
+  const urlT = `${busesEmpresaP}/${empresaId}`;
+  const urlH = `${busesEmpresaEstadoP}/${empresaId}/1`;
+  const urlD = `${busesEmpresaEstadoP}/${empresaId}/0`;
 
   const handleMostrarTabla = (tabla) => {
     setTablaSeleccionada(tabla);

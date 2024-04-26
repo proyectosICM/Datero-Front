@@ -32,7 +32,8 @@ import { MapaOL2 } from "./Pages/Maps/mapaOL2";
 export const routes = [
 
   // Inicio
-
+  { path: "/", component: <Inicio /> },
+  
   // Panel Rutas
   { path: "/rutas", component: <RutasC /> },
   { path: "/paraderos-de-ruta", component: <ParaderoXRutaTabla /> },
@@ -71,7 +72,7 @@ export const routes = [
   { path: "/mapa-prueba2", component: <MapaOL2/> },
 
   //Pages
-  { path: "/", component: <Inicio /> },
+
 
   { path: "/mapa", component: <MapaDePrueba /> },
 

@@ -15,7 +15,7 @@ export function EmpresasTabla({ url, abrir, cerrar }) {
   const agregarEmpresa = (empresa) => {
     agregarElemento(empresasURL, empresa, closeModal);
   };
-
+ 
   const editarEmpresa = (empresa) => {
     const apiurledit = `${empresasURL}/${empresa.id}`;
     editarElemento(apiurledit, empresa, closeModal);

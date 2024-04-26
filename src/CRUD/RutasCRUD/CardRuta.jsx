@@ -10,7 +10,7 @@ import "../../Styles/animaciones.css";
 
 export function CardRuta({ dato, edit, cambiarEstado }) {
   const navigation = useNavigate();
-
+ 
   //const idemp = 1;
   const backButton = () => {
     localStorage.setItem("backURL", `/rutas`);
@@ -32,7 +32,7 @@ export function CardRuta({ dato, edit, cambiarEstado }) {
         <div className="contenedor-iconos">
           <div class="contenedor-card">
             <div class="first-content">
-              <img src={configuracionIcono} alt="ruta-icono " className="icono-card" onClick={() => navigation(`/paraderoxruta/${dato.id}`)} />
+              <img src={configuracionIcono} alt="ruta-icono " className="icono-card" onClick={() => handleParaderoxRuta(dato.id)} />
             </div>
             <div class="second-content">
               <span style={{ fontSize: "12px" }} onClick={() => handleParaderoxRuta(dato.id)}>

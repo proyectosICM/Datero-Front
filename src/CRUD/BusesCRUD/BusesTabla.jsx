@@ -1,60 +1,47 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Table } from "react-bootstrap";
 import { BusesModal } from "./BusesModal";
 import { busesURL } from "../../API/apiurls";
-import { agregarElemento, editarElemento, useListarElementos, cambiarEstadoElemento } from "../../Hooks/CRUDHooks.jsx";
+import {
+  agregarElemento,
+  editarElemento,
+  useListarElementos,
+  cambiarEstadoElemento,
+  ListPaginatedData,
+  useFetchData,
+} from "../../Hooks/CRUDHooks.jsx";
 import { BotonesDeGestion } from "../../Common/BotonesDeGestion";
+import { PaginacionUtils } from "../../Hooks/paginationUtils.jsx";
+import { requestDataBus } from "../requestDataCrud.jsx";
 
 export function BusesTabla({ url, abrir, cerrar }) {
-  const [datos, setDatos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
   const empresaId = localStorage.getItem("empresaId");
-  useListarElementos(url, setDatos);
 
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const { datos, totalPages, currentPage, setCurrentPage, fetchData } = useFetchData(url, pageNumber);
+ 
   const agregarBus = (bus) => {
-    console.log(bus);
-    const requestData = {
-      modelo: bus.modelo, 
-      placa: bus.placa,
-      estado: bus.estado,
-      usuariosModel: {
-        id: bus.trabajadoresModel,
-      },
-      empresasModel: {
-        id: empresaId,
-      },
-      rutasModel: {
-        id: bus.rutasModel,
-      },
-    };
-
+    const requestData = requestDataBus(bus, empresaId);
     agregarElemento(busesURL, requestData, closeModal);
+    fetchData(pageNumber);
   };
 
   const editarBus = (bus) => {
-    const requestData = {
-      modelo: bus.modelo,
-      placa: bus.placa,
-      estado: bus.estado,
-      usuariosModel: {
-        id: bus.usuariosModel,
-      },
-      empresasModel: {
-        id: empresaId,
-      },
-      rutasModel: {
-        id: bus.rutasModel,
-      },
-    };
+    const requestData = requestDataBus(bus, empresaId);
     const apiurledit = `${busesURL}/${bus.id}`;
-    console.log(requestData);
+    console.log(bus)
+    console.log(requestData)
     editarElemento(apiurledit, requestData, closeModal);
+    fetchData(pageNumber);
   };
 
   const cambiarEstado = (id) => {
     cambiarEstadoElemento(busesURL, id, `estado`);
+    fetchData(pageNumber);
   };
 
   const edit = (bus) => {
@@ -66,6 +53,7 @@ export function BusesTabla({ url, abrir, cerrar }) {
     cerrar();
     setShowModal(false);
     setDatosEdit(null);
+    fetchData(pageNumber);
   };
 
   return (
@@ -103,6 +91,7 @@ export function BusesTabla({ url, abrir, cerrar }) {
         </tbody>
       </Table>
       <BusesModal emp={empresaId} show={showModal || abrir} close={closeModal} agregar={agregarBus} datosaeditar={datosEdit} editar={editarBus} />
+      <PaginacionUtils setPageNumber={setPageNumber} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
     </>
   );
 }

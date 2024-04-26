@@ -19,7 +19,6 @@ export function ParaderoXRutaTabla() {
   useListarElementos(`${rpXRuta}/${rutaId}`, setDatos);
 
   const agregarParaderoXRuta = (pr) => {
-    console.log(pr);
     const requestData = {
       orden: 1,
       rutasModel: {
@@ -64,14 +63,19 @@ export function ParaderoXRutaTabla() {
     setShowModal(false);
   };
 
-  const backButton = () => {
-    navigation(`/rutasMapa/${rutaId}`);
-    localStorage.setItem("backURL", `/paraderoxruta/${rutaId}` )
+  const handleVerMapa = () => {
+    localStorage.setItem("backURL", `/paraderos-de-ruta` )
+    navigation(`/mapa-de-ruta`);
+  }
+
+  const handleBack = () => {
+    localStorage.setItem("backURL", `/` )
+    navigation(`/rutas`);
   }
 
   return (
     <div className="container-crud">
-      <Button className="boton-atras" onClick={() => navigation(`/rutas`)}> Atras</Button>
+      <Button className="boton-atras" onClick={() => handleBack()}> Atras</Button>
       <div>
         <h1>RUTA {datos.length ? datos[0].rutasModel.nombre : "Cargando datos"}</h1>
         <h2>
@@ -82,7 +86,7 @@ export function ParaderoXRutaTabla() {
         <Button variant="success" onClick={openModal}>
           Crear
         </Button>
-        <Button variant="success" onClick={() => backButton() }>Ver el mapa</Button>
+        <Button variant="success" onClick={() => handleVerMapa() }>Ver el mapa</Button>
       </div>
 
       <Table striped bordered hover>

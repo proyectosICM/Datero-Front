@@ -1,41 +1,38 @@
 import React, { useState } from "react";
 import { RutasModal } from "./RutasModal";
-import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "../../Hooks/CRUDHooks";
+import { agregarElemento, cambiarEstadoElemento, editarElemento, useFetchData } from "../../Hooks/CRUDHooks";
 import { rutasURL } from "../../API/apiurls";
-import "../../Styles/General.css";
 import { CardRuta } from "./CardRuta";
-export function RutasTabla({ url, il, abrir, cerrar }) { 
-  const [datos, setDatos] = useState([]);
+import { PaginacionUtils } from "../../Hooks/paginationUtils";
+import { requestDataRuta } from "../requestDataCrud";
+import "../../Styles/General.css";
+
+export function RutasTabla({ url, il, abrir, cerrar }) {
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
   const empresaId = localStorage.getItem("empresaId");
-  useListarElementos(url, setDatos);
+
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const { datos, totalPages, currentPage, setCurrentPage, fetchData } = useFetchData(url, pageNumber);
 
   const agregarBus = (ruta) => {
-    const requestData = {
-      nombre: ruta.nombre,
-      estado: ruta.estado,
-      empresasModel: {
-        id: empresaId,
-      },
-    };
+    const requestData = requestDataRuta(ruta, empresaId);
     agregarElemento(rutasURL, requestData, closeModal);
+    fetchData(pageNumber);
   };
 
   const editarBus = (ruta) => {
-    const requestData = {
-      nombre: ruta.nombre,
-      estado: ruta.estado,
-      empresasModel: {
-        id: empresaId,
-      },
-    };
+    const requestData = requestDataRuta(ruta, empresaId);
     const apiurledit = `${rutasURL}/${ruta.id}`;
     editarElemento(apiurledit, requestData, closeModal);
+    fetchData(pageNumber);
   };
 
   const cambiarEstado = (id) => {
+    fetchData(pageNumber);
     cambiarEstadoElemento(rutasURL, id, `estado`);
+
   };
 
   const edit = (bus) => {
@@ -44,11 +41,12 @@ export function RutasTabla({ url, il, abrir, cerrar }) {
   };
 
   const closeModal = () => {
+    fetchData(pageNumber);
     cerrar();
     setShowModal(false);
   };
 
-  return (
+  return ( 
     <>
       <div className="card-container">
         {datos.map((dato, index) => (
@@ -56,6 +54,7 @@ export function RutasTabla({ url, il, abrir, cerrar }) {
         ))}
       </div>
       <RutasModal emp={empresaId} show={showModal || abrir} close={closeModal} agregar={agregarBus} datosaeditar={datosEdit} editar={editarBus} />
+      <PaginacionUtils setPageNumber={setPageNumber} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
     </>
   );
 }

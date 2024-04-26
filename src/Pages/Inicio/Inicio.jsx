@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Swal from "sweetalert2"; 
+import Swal from "sweetalert2";
 import "../../Styles/Inicio.css";
 import rutaicono from "../../Images/rutaIcono.png";
 import administrarIcono from "../../Images/administrarIcono.png";
@@ -14,10 +14,10 @@ import { MapaBase } from "../Maps/MapaBase";
 
 export function Inicio() {
   const navigation = useNavigate();
-
+ 
   const [buses, setBuses] = useState();
   const idemp = 19;
-  
+
   useListarElementos(`${busesEmpresa}/${idemp}`, setBuses);
 
   localStorage.setItem("empresaId", idemp);
@@ -31,7 +31,6 @@ export function Inicio() {
       cancelButtonText: "No",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Aquí puedes realizar alguna acción si el usuario hace clic en "Sí"
         navigation("/map-fullScreen");
       }
     });

@@ -4,46 +4,36 @@ import { ParaderosModal } from "./ParaderosModal";
 import { SiGooglemaps } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
 import { BotonesDeGestion } from "../../Common/BotonesDeGestion";
-import { agregarElemento, cambiarEstadoElemento, editarElemento, useListarElementos } from "./../../Hooks/CRUDHooks";
+import { agregarElemento, cambiarEstadoElemento, editarElemento, useFetchData, useListarElementos } from "./../../Hooks/CRUDHooks";
 import { paraderosURL } from "../../API/apiurls";
+import { PaginacionUtils } from "../../Hooks/paginationUtils";
+import { requestDataParadero } from "../requestDataCrud";
 
 export function ParaderosTabla({ url, abrir, cerrar }) {
-  const [datos, setDatos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [datosEdit, setDatosEdit] = useState(null);
   const navigation = useNavigate();
-  useListarElementos(url, setDatos);
 
-  const agregarDistrito = (paradero) => {
-    console.log(paradero);
-    const requestData = {
-      nombre: paradero.nombre,
-      estado: paradero.estado,
-      distritosModel: {
-        id: paradero.distritosModel,
-      },
-      longitud: paradero.longitud,
-      latitud: paradero.latitud,
-    };
+  const [pageNumber, setPageNumber] = useState(0);
+
+  const { datos, totalPages, currentPage, setCurrentPage, fetchData } = useFetchData(url, pageNumber);
+
+  const agregarParadero = (paradero) => {
+    const requestData = requestDataParadero(paradero);
     agregarElemento(paraderosURL, requestData, closeModal);
+    fetchData(pageNumber);
   };
 
-  const editarDistritos = (paradero) => {
-    const requestData = {
-      nombre: paradero.nombre,
-      estado: paradero.estado,
-      distritosModel: {
-        id: paradero.distritosModel,
-      },
-      longitud: paradero.longitud,
-      latitud: paradero.latitud,
-    };
+  const editarParadero = (paradero) => {
+    const requestData = requestDataParadero(paradero);
     const apiurledit = `${paraderosURL}/${paradero.id}`;
     editarElemento(apiurledit, requestData, closeModal);
+    fetchData(pageNumber);
   };
 
   const cambiarEstado = (id) => {
     cambiarEstadoElemento(paraderosURL, id, `estado`);
+    fetchData(pageNumber);
   };
 
   const edit = (bus) => {
@@ -55,6 +45,7 @@ export function ParaderosTabla({ url, abrir, cerrar }) {
     setShowModal(false);
     cerrar();
     setDatosEdit(null);
+    fetchData(pageNumber);
   };
 
   const handleVerEnMapa = (dato) => {
@@ -98,7 +89,8 @@ export function ParaderosTabla({ url, abrir, cerrar }) {
           ))}
         </tbody>
       </Table>
-      <ParaderosModal show={showModal || abrir} close={closeModal} agregar={agregarDistrito} datosaeditar={datosEdit} editar={editarDistritos} />
+      <ParaderosModal show={showModal || abrir} close={closeModal} agregar={agregarParadero} datosaeditar={datosEdit} editar={editarParadero} />
+      <PaginacionUtils setPageNumber={setPageNumber} setCurrentPage={setCurrentPage} currentPage={currentPage} totalPages={totalPages} />
     </>
   );
 }

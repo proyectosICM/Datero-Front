@@ -14,6 +14,8 @@ export const empresasEstado = `${empresasURL}/xestado`;
 export const busesURL = `${baseURL}/buses`;
 export const busesEmpresa = `${busesURL}/xempresa`;
 export const busesEmpresaEstado = `${busesURL}/xempresaAndEstado`;
+export const busesEmpresaP = `${busesURL}/xempresaP`;
+export const busesEmpresaEstadoP = `${busesURL}/xempresaAndEstadoP`;
 export const busesPosURL = `${baseURL}/buses/pos`;
   
 //Rutas
@@ -34,6 +36,9 @@ export const paraderosURL = `${baseURL}/paraderos`;
 export const paraderosEstado = `${paraderosURL}/xestado`;
 export const paraderosEmpresaEstado = `${paraderosURL}/xempresaAndEstado`;
 
+export const paraderosPURL = `${baseURL}/paraderos/page`;
+export const paraderosEstadoP = `${paraderosURL}/xestadoP`;
+export const paraderosEmpresaEstadoP = `${paraderosURL}/xempresaAndEstadoP`;
 //Usuarios
 export const usuariosURL = `${baseURL}/usuarios`;
 export const usuariosEmpresa = `${usuariosURL}/xempresa`;

@@ -14,7 +14,7 @@ export function RutasC() {
   const handleMostrarTabla = (tabla) => {
     setTablaSeleccionada(tabla);
   };
-
+ 
   const [abrir, setAbrir] = useState(false);
 
   const handleAbrirModal = () => {
@@ -31,8 +31,9 @@ export function RutasC() {
     }
   };
 
-  const backURL = localStorage.getItem("backURL");
+  const backURL = localStorage.getItem("backURL"); 
   
+  console.log(backURL);
   return (
     <div className="container-crud">
       <div className="set-botones">

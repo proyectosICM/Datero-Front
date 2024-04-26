@@ -31,7 +31,7 @@ export function RutasModal({show, close,datosaeditar,editar,agregar,emp}){
     const limpiar = () =>{
         setFormData({ nombre: "", estado: true, empresasModel: emp });
     }
-
+ 
 
     return(
         <div>
