@@ -14,7 +14,7 @@ export function useListarElementos(url, setDatos) {
       clearInterval(intervalId);
     };
   }, []);
-}
+} 
 
 export function useListarElementosPaginados(url, setDatos, setTotalPages,setCurrentPage) {
   const ListarDatos = useCallback(async () => {
@@ -28,7 +28,7 @@ export function useListarElementosPaginados(url, setDatos, setTotalPages,setCurr
     const intervalId = setInterval(ListarDatos, 1000);
     ListarDatos();
     return () => {
-      clearInterval(intervalId);
+      clearInterval(intervalId);  
     };
   }, []);
 }
