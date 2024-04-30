@@ -21,7 +21,7 @@ export const useShowMapAfterDelay = (delay) => {
 
   return showMap;
 };
-
+ 
 export const useCreateMap = (mapRef, position, setMap) => {
   const createMap = useCallback(() => {
     const initialMap = new Map({
