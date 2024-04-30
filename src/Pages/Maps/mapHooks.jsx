@@ -23,7 +23,6 @@ export const useShowMapAfterDelay = (delay) => {
 };
 
 export const useCreateMap = (mapRef, position, setMap) => {
-  // const setMap = useState(null)[1];
   const createMap = useCallback(() => {
     const initialMap = new Map({
       target: mapRef.current,
@@ -58,7 +57,6 @@ export const addMarker = (map, position, image, title) => {
   } else if (image === 'paradero') {
     markerImageSrc = require("../../Images/paradero.png");
   } else {
-    // En caso de que la propiedad image no coincida con ninguna de las opciones, usa un valor predeterminado
     markerImageSrc = require("../../Images/masIcono.png");
   }
 
