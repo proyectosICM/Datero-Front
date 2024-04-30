@@ -24,12 +24,10 @@ export function RutasMapa({ dat }) {
       localStorage.setItem("backURL", "/ruta");
     }
   };
-
+ 
   return (
     <>
-      <Button onClick={() => handleBack()}>Atras</Button>
-      <h1>Mapa 1 </h1>
-
+      <Button style={{ width: "95%", marginTop: "2%"}} onClick={() => handleBack()}>Atras</Button>
       <div style={{ width: "100%", height: "600px", cursor: "pointer" }}>
         <MapaBase rutas={datos} />
       </div>

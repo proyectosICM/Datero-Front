@@ -47,6 +47,26 @@ export const useCreateMap = (mapRef, position, setMap) => {
 };
 
 export const addMarker = (map, position, image, title) => {
+  // Buscar si ya existe un marcador con el mismo título
+  let existingMarker;
+  map.getLayers().forEach(layer => {
+    if (layer.getSource() instanceof VectorSource) {
+      const features = layer.getSource().getFeatures();
+      features.forEach(feature => {
+        if (feature.get("title") === title) {
+          existingMarker = feature;
+        }
+      });
+    }
+  });
+
+  // Si existe un marcador con el mismo título, actualizar su posición
+  if (existingMarker) {
+    existingMarker.getGeometry().setCoordinates(fromLonLat(position));
+    return; // Salir de la función, no añadir un nuevo marcador
+  }
+
+  // Si no existe un marcador con el mismo título, añadir uno nuevo
   const marker = new Feature({
     geometry: new Point(fromLonLat(position)),
   });
@@ -59,6 +79,8 @@ export const addMarker = (map, position, image, title) => {
   } else {
     markerImageSrc = require("../../Images/masIcono.png");
   }
+
+  marker.set("title", title); // Establecer el título del marcador
 
   map.addLayer(
     new VectorLayer({
