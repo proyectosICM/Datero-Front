@@ -1,9 +1,9 @@
 // URL base común
-const base = "http://localhost:8080"
+const base = "http://localhost:8085"
 
 const baseURL = `${base}/api`;
 
-const tomtomAPIKEY = 'h7fg9TqEyAohgMGDrKynpp3vqsXdB9ZF'
+
 
 //CRUD
 //Empresas
